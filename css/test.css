@@ -1,0 +1,12 @@
+.test{
+	margin: 100px;
+	padding: 100px;
+	border:2px solid red;
+	position: absolute;
+}
+.test2{
+	margin: 100px;
+	padding: 100px;
+	border:10px solid blue;
+	position: absolute;
+}
