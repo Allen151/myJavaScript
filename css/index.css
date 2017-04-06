@@ -1,0 +1,105 @@
+body{
+	background-color: #fff;
+	margin: 0px;
+	padding: 0px;
+}
+#top{
+	width: 1000px;
+	height: 90px;
+	margin: 0px auto;
+}
+#logo{
+	width:300px;
+}
+.aboutUs{
+	display: inline-block;
+	border-left: 2px solid #000;
+	text-indent: 40px;
+	font-size: 28px;
+	height: 60px;
+	line-height: 60px;
+	color: #16A085;
+}
+#twoCodeAll{
+	height: 90px;
+	width: 108px;
+	float:right;
+	margin-right: 20px;
+}
+#twoCodeAll p{
+	font-size: 12px;
+	height: 0px;
+	line-height: 0px;
+}
+#twoCode{
+	width: 70px;
+	margin-left: 19px;
+}
+#star{
+	width: 100%;
+	border-top: 2px solid #95A5A6;
+	margin-top: 10px;
+}
+#star p{
+	width: 915px;
+	height: 140px;
+	margin: 10px auto;
+	text-indent:2em;
+	font-size: 18px;
+	padding: 40px;
+	line-height: 30px;
+	color: #ECF0F1;
+	background-color: #1ABC9C;
+	border:2px solid #2C3E50;
+}
+#bottom{
+	width: 100%;
+	height: 80px;
+	background-color: #000;
+}
+#bottom p{
+	color:#BDC3C7;
+	text-align: center;
+	font-size: 18px;
+	height: 80px;
+	line-height: 80px;
+}
+
+
+#content{
+	width: 1000px;
+	height: 1000px;
+	background-color: #ccc;
+	margin: 10px auto 0px auto;
+}
+#nav{
+	height: 900px;
+	width: 200px;
+	border-right:3px solid #2C3E50;
+	float: left;
+	margin-top: 50px;
+}
+#content button{
+	margin-left:100px;
+	margin-top: 50px;
+	display: block;
+}
+#table{
+	height: 900px;
+	width: 700px;
+	float: right;
+	margin: 50px 30px 50px 0px;
+}
+#table table{
+	width: 700px;
+	background-color: #ECF0F1;
+}
+#table table td{
+	width: 100px;
+	height: 40px;
+}
+#table table th{
+	width: 100px;
+	height: 40px;
+	background-color: #fff;
+}
