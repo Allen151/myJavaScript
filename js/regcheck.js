@@ -8,6 +8,10 @@ eg.regCheck = function(){//点击事件
 	var upawd = eg.$("userpwd");
 	var upawd2 = eg.$("userpwd2");
 	var about = eg.$("about");
+	var age = eg.$("age");
+	var likes = eg.getElementsByClassName("like");//所有爱好的标签
+	var likeNum = 0 ;//用于计算已经选择的爱好数量
+	var email = eg.$("email");
 	if(userid.value == ""){
 		alert("账号不能为空");
 		eg.err();
@@ -23,10 +27,30 @@ eg.regCheck = function(){//点击事件
 		eg.err();
 		return false ;
 	}
+	if(!/^[A-Za-z\d]+[A-Za-z\d\-_\.]*@([A-Za-z\d]+[A-Za-z\d\-]*\.)+[A-Za-z]{2,4}$/.test(email.value)){//正则表达式验证邮箱
+		alert("请输入正确的邮箱！！");
+		eg.err();
+		return false ;
+	}
 	if(about.value.length > 60){
 		alert("简介太长");
 		eg.err();
 		return false ;
+	}
+	if(age.value == "0"){
+		alert("请选择年龄段！");
+		eg.err();
+		return false;
+	}
+	for(var n=0;n<likes.length;n++){//各个爱好的检索
+		if(likes[n].checked){//如果爱好已经选择，计量数加1
+			likeNum++;
+		}
+	}
+	if(likeNum==0){//如果全部都没有选择上
+		alert("至少选择一项爱好！");
+		eg.err();
+		return false;
 	}
 	return true ;
 };
@@ -62,5 +86,22 @@ eg.unlock = function(){
 		eg.$("regUnlock").style.display="none";//两个按键都隐藏
 		eg.$("regBtn").style.display="none";
 	}
-
+};
+eg.getElementsByClassName = function(className, element){
+	if(document.getElementsByClassName){
+		return (element || document).getElementsByClassName(className);
+	}
+	var children = (element || document).getElementsByTagName("*");
+	var elements = new Array();
+	for(var i=0;i<children.length;i++){
+		var child = children[i];
+		var classNames = child.className.split(' ');
+		for(var j=0;j<classNames.length;j++){
+			if(classNames[j] == className){
+				elements.push(child);
+				break ;
+			}
+		}
+	} 
+	return elements;
 };
