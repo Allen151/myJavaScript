@@ -1,0 +1,39 @@
+<!DOCTYPE  HTML>
+<html >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>JS的内置对象一个实例</title>
+
+<script type="text/javascript">
+  //通过javascrpt的日期对象来得到当前的日期，并输出。
+  var date = new Date();
+  var allWeek = ["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+  var allMonth = ["一","二","三","四","五","六","七","八","九","十","十一","十二"];
+  var myYear = date.getFullYear();
+  var myMonth = allMonth[date.getMonth()];
+  var myDate = date.getDate();
+  var myWeek = allWeek[date.getDay()];
+  document.write(myYear+"年"+myMonth+"月"+myDate+"日"+"\t"+myWeek+"<br />");
+  
+  //成绩是一长窜的字符串不好处理，找规律后分割放到数组里更好操作哦
+  var scoreStr = "小明:87;小花:81;小红:97;小天:76;小张:74;小小:94;小西:90;小伍:76;小迪:64;小曼:76";
+  var arr =scoreStr.split(";");
+  var score = new Array();
+  document.write("各个学生的成绩："+"<br />");
+  for(var i=0;i<arr.length;i++){
+  	score[i] = arr[i].substr(3,2);
+  	document.write(arr[i]+"<br />");
+  }
+  //从数组中将成绩撮出来，然后求和取整，并输出。
+  var sum = 0;
+  for(var i=0;i<score.length;i++){
+  	sum += parseInt(score[i]); 
+  }
+  var average = sum/score.length;
+  document.write("该班的总成绩是"+sum+"\t"+"平均成绩是："+average);
+
+</script>
+</head>
+<body>
+</body>
+</html>
