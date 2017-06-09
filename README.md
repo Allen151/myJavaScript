@@ -22,4 +22,4 @@
 [动态绑定事件与监听]: onload.md
 [图片轮换]: markdown/changepic.md
 [示例1]: onload.html
-[示例2]: changepic.html
+[示例2]: https://allen151.github.io/test/changepic.html
