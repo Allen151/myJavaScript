@@ -61,11 +61,10 @@
 	}else{
 		num = 6;
 	}
+	eg.chang();},false);
+	down.addEventListener("click",function(){
 	eg.chang();
-},false);
-down.addEventListener("click",function(){
-	eg.chang();
-},false);
+	},false);
 		```
     
 <!--这里链接-->
