@@ -694,10 +694,16 @@ function setDocumentScrollTop(ypos)
      <li>上一张<br /> “上一张”如果按上一张，序号减1，那调用方法又把该1加回来了，所以我们设置减2。</li> 
     </ul> 
     <div class="highlight highlight-source-js">
-     <pre></pre>
+     <pre><span class="pl-smi">up</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>click<span class="pl-pds">&quot;</span></span>,<span class="pl-k">function</span>(){
+<span class="pl-k">if</span>(num <span class="pl-k">&gt;</span> <span class="pl-c1">2</span>){<span class="pl-c"><span class="pl-c">//</span>实现下张图片</span>
+	num <span class="pl-k">-=</span> <span class="pl-c1">2</span> ;
+}<span class="pl-k">else</span>{
+	num <span class="pl-k">=</span> <span class="pl-c1">6</span>;
+}
+<span class="pl-smi">eg</span>.<span class="pl-en">chang</span>();</pre>
     </div> </li> 
   </ul> </li> 
 </ul> 
-<p>up.addEventListener(&quot;click&quot;,function(){ if(num &gt; 2){//实现下张图片 num -= 2 ; }else{ num = 6; } eg.chang(); },false); down.addEventListener(&quot;click&quot;,function(){ eg.chang(); },false); ```</p>
+<p>},false); down.addEventListener(&quot;click&quot;,function(){ eg.chang(); },false); ```</p>
 </body>
 </html>

@@ -55,7 +55,7 @@
     - 上一张  
       “上一张”如果按上一张，序号减1，那调用方法又把该1加回来了，所以我们设置减2。
     ```javascript
-up.addEventListener("click",function(){
+    up.addEventListener("click",function(){
 	if(num > 2){//实现下张图片
 		num -= 2 ;
 	}else{
