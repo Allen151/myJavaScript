@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>D:\IT\github\test\.README.md.html</title>
+<title>D:\IT\github\test\markdown\.changepic.md.html</title>
 
 
 <style type="text/css">
@@ -639,19 +639,76 @@ function setDocumentScrollTop(ypos)
 
 </head>
 <body class="markdown-body">
-<h1> <a id="test" class="anchor" href="#test" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>test</h1> 
-<p>做各种实验用<br /> 更新一下这里的信息，试一下表情图。<br /> 
- <g-emoji alias="+1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png" ios-version="6.0">
-  👍
- </g-emoji><br /> 2017年6月9日开始用这个仓库进行JavaScript的学习<br /> 里面有我觉得重要的代码文件，也有各个代码的说明文件，以下是各个知识点的总目录。</p> 
-<h1> <a id="javascript的各个知识点" class="anchor" href="#javascript%E7%9A%84%E5%90%84%E4%B8%AA%E7%9F%A5%E8%AF%86%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>JavaScript的各个知识点</h1> 
-<h2> <a id="李兴华老师的课堂笔记" class="anchor" href="#%E6%9D%8E%E5%85%B4%E5%8D%8E%E8%80%81%E5%B8%88%E7%9A%84%E8%AF%BE%E5%A0%82%E7%AC%94%E8%AE%B0" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>李兴华老师的课堂笔记</h2> 
-<h3> <a id="初级" class="anchor" href="#%E5%88%9D%E7%BA%A7" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>初级</h3> 
+<h2> <a id="图片轮换" class="anchor" href="#%E5%9B%BE%E7%89%87%E8%BD%AE%E6%8D%A2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>图片轮换</h2> 
+<p><strong>JavaScript的动态图片轮换是很常用的，还有一个常用的知识点是表单验证。在这里，我们来聊聊图片的轮换</strong></p> 
 <ul> 
- <li> <a href=".onload.md.html">动态绑定事件与监听</a> <del><a href="onload.html">示例1</a></del> </li> 
- <li> <a href="markdown\.changepic.md.html">图片轮换</a> <del><a href="changepic.html">示例2</a></del> </li> 
-</ul> 
-<h3> <a id="高级" class="anchor" href="#%E9%AB%98%E7%BA%A7" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>高级</h3> 
-<h3> <a id="实战" class="anchor" href="#%E5%AE%9E%E6%88%98" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>实战</h3>
+ <li>手动轮换 
+  <ul> 
+   <li>准备图片<br /> 准备8张图片，命名不pic-*.jpg，相对路径是image。</li> 
+   <li>HTML样式 
+    <div class="highlight highlight-text-html-basic">
+     <pre>&lt;<span class="pl-ent">img</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>img<span class="pl-pds">&quot;</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>image/pic-1.jpg<span class="pl-pds">&quot;</span></span>&gt;&lt;<span class="pl-ent">br</span> /&gt;
+&lt;<span class="pl-ent">button</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>up<span class="pl-pds">&quot;</span></span>&gt;上一张&lt;/<span class="pl-ent">button</span>&gt;
+&lt;<span class="pl-ent">button</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>down<span class="pl-pds">&quot;</span></span>&gt;下一张&lt;/<span class="pl-ent">button</span>&gt;</pre>
+    </div> </li> 
+   <li>JS代码<br /> 在前一节的前提下，在这里没有太多的新知识。<br /> 改变图片的方法： 
+    <div class="highlight highlight-source-js">
+     <pre>  <span class="pl-k">var</span> num <span class="pl-k">=</span> <span class="pl-c1">1</span> ;<span class="pl-c"><span class="pl-c">//</span>图片序号</span>
+  <span class="pl-smi">eg</span>.<span class="pl-en">chang</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(){
+  <span class="pl-k">var</span> img <span class="pl-k">=</span> <span class="pl-smi">eg</span>.<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>img<span class="pl-pds">&quot;</span></span>);
+  <span class="pl-smi">img</span>.<span class="pl-smi">src</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>image/pic-<span class="pl-pds">&quot;</span></span><span class="pl-k">+</span>num<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">&quot;</span>.jpg<span class="pl-pds">&quot;</span></span> ;<span class="pl-c"><span class="pl-c">//</span>改变属性</span>
+  }</pre>
+    </div> 单击事件： 
+    <div class="highlight highlight-source-js">
+     <pre><span class="pl-k">if</span>(num <span class="pl-k">&gt;</span> <span class="pl-c1">1</span>){<span class="pl-c"><span class="pl-c">//</span>实现上张图片</span>
+  	num <span class="pl-k">--</span> ;
+  }<span class="pl-k">else</span>{
+  	num <span class="pl-k">=</span> <span class="pl-c1">6</span>;<span class="pl-c"><span class="pl-c">//</span>循环</span>
+  }
+  <span class="pl-smi">eg</span>.<span class="pl-en">chang</span>();<span class="pl-c"><span class="pl-c">//</span>调用改变图片的方法</span></pre>
+    </div> </li> 
+  </ul> </li> 
+ <li>自动轮换 
+  <ul> 
+   <li> <a href="http://www.w3school.com.cn">查方法网站</a><br /> 这是万维网的网站，前端学习的一个好地方。内置方法太多了，我们不可能一一记住，我们可以直接到这个网站上查找。例如我们等一下要用到的<code>setInterval()</code>，就可以在这个网站的javascript手册的BOM的window下找到。</li> 
+   <li>让change()方法自己改变图片的序号 
+    <div class="highlight highlight-source-js">
+     <pre><span class="pl-smi">eg</span>.<span class="pl-en">chang</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(){
+<span class="pl-k">if</span>(num <span class="pl-k">&lt;</span> <span class="pl-c1">6</span>){<span class="pl-c"><span class="pl-c">//</span>调用这个方法就自动跳转到下一张图片</span>
+	num <span class="pl-k">++</span> ;
+}<span class="pl-k">else</span>{
+	num <span class="pl-k">=</span> <span class="pl-c1">1</span> ;
+}
+<span class="pl-k">var</span> img <span class="pl-k">=</span> <span class="pl-smi">eg</span>.<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>img<span class="pl-pds">&quot;</span></span>);
+<span class="pl-smi">img</span>.<span class="pl-smi">src</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>image/pic-<span class="pl-pds">&quot;</span></span><span class="pl-k">+</span>num<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">&quot;</span>.jpg<span class="pl-pds">&quot;</span></span> ;<span class="pl-c"><span class="pl-c">//</span>改变属性</span>
+}</pre>
+    </div> <strong>调用一次这个方法图片轮换到就下一张</strong> </li> 
+   <li>设置3秒钟调用一次 
+    <div class="highlight highlight-source-js">
+     <pre><span class="pl-c"><span class="pl-c">//</span>直接到万维网查找方法</span>
+<span class="pl-c1">window</span>.<span class="pl-en">setInterval</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>eg.chang()<span class="pl-pds">&quot;</span></span>,<span class="pl-c1">3000</span>);</pre>
+    </div> </li> 
+   <li>让两个按键继续生效 
+    <ul> 
+     <li>下一张<br /> “下一张”按键不用再改变序号了，直接调用方法就行。</li> 
+     <li>上一张<br /> “上一张”如果按上一张，序号减1，那调用方法又把该1加回来了，所以我们设置减2。</li> 
+    </ul> 
+    <div class="highlight highlight-source-js">
+     <pre>	  <span class="pl-smi">up</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>click<span class="pl-pds">&quot;</span></span>,<span class="pl-k">function</span>(){
+			<span class="pl-k">if</span>(num <span class="pl-k">&gt;</span> <span class="pl-c1">2</span>){<span class="pl-c"><span class="pl-c">//</span>实现下张图片</span>
+				num <span class="pl-k">-=</span> <span class="pl-c1">2</span> ;
+			}<span class="pl-k">else</span>{
+				num <span class="pl-k">=</span> <span class="pl-c1">6</span>;
+			}
+			<span class="pl-smi">eg</span>.<span class="pl-en">chang</span>();
+		},<span class="pl-c1">false</span>);
+		<span class="pl-smi">down</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>click<span class="pl-pds">&quot;</span></span>,<span class="pl-k">function</span>(){
+			<span class="pl-smi">eg</span>.<span class="pl-en">chang</span>();
+		},<span class="pl-c1">false</span>);
+	<span class="pl-s"><span class="pl-pds">`</span><span class="pl-pds">`</span><span class="pl-pds">`</span></span>
+<span class="pl-s"></span></pre>
+    </div> </li> 
+  </ul> </li> 
+</ul>
 </body>
 </html>
