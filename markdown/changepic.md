@@ -2,7 +2,7 @@
 **JavaScript的动态图片轮换是很常用的，还有一个常用的知识点是表单验证。在这里，我们来聊聊图片的轮换**  
 - 手动轮换  
   - 准备图片  
-  准备8张图片，命名不pic-*.jpg，相对路径是image。
+  准备8张图片，命名为pic-*.jpg，相对路径是image。
   - HTML样式
 	```HTML
 	<img id="img" src="image/pic-1.jpg"><br />
@@ -55,17 +55,17 @@
     - 上一张  
       “上一张”如果按上一张，序号减1，那调用方法又把该1加回来了，所以我们设置减2。
     ```javascript
-		  up.addEventListener("click",function(){
-				if(num > 2){//实现下张图片
-					num -= 2 ;
-				}else{
-					num = 6;
-				}
-				eg.chang();
-			},false);
-			down.addEventListener("click",function(){
-				eg.chang();
-			},false);
+up.addEventListener("click",function(){
+	if(num > 2){//实现下张图片
+		num -= 2 ;
+	}else{
+		num = 6;
+	}
+	eg.chang();
+},false);
+down.addEventListener("click",function(){
+	eg.chang();
+},false);
 		```
     
 <!--这里链接-->
