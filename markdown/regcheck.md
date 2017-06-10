@@ -64,7 +64,7 @@
   }
   ```  
   取得对象，判断值如果为空就提示用户，并且调用`eg.err()`方法，返回false表示注册失败。  
-  **eg.err()方法**  
+  **eg.err()方法**   
   ```javascript
   eg.err = function(){
 	var el = eg.$("errnum");
@@ -119,4 +119,28 @@
 	eg.err();
 	return false ;
   }
-  ```
+  ```  
+  这是正则表达式，我现在还没弄明白。如果你们要用，可以直接百度代码使用。后面我学习到了再做相应的解释。
+  - 通过className获得元素对象  
+  ```javascript
+  var likes = eg.getElementsByClassName("like");//所有爱好的标签  
+  eg.getElementsByClassName = function(className, element){
+	if(document.getElementsByClassName){
+		return (element || document).getElementsByClassName(className);
+	}
+	var children = (element || document).getElementsByTagName("*");
+	var elements = new Array();
+	for(var i=0;i<children.length;i++){
+		var child = children[i];
+		var classNames = child.className.split(' ');
+		for(var j=0;j<classNames.length;j++){
+			if(classNames[j] == className){
+				elements.push(child);
+				break ;
+			}
+		}
+	} 
+	return elements;
+	};
+  ```  
+  有些浏览器兼容`getElementByClassName()`方法，我们为它的兼容性写了一个方法，如果浏览器兼容，就直接调用方法，如果不兼容就用一个循环遍历所有的标签，如果有className符合我们的要求就放进数组。

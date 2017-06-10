@@ -641,32 +641,39 @@ function setDocumentScrollTop(ypos)
 <body class="markdown-body">
 <h2> <a id="onloadegaddeventlistener" class="anchor" href="#onloadegaddeventlistener" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>onload、eg.${}、addEventListener</h2> 
 <ul> 
- <li>onload（动态绑定事件）<br /> 必须要用动态绑定事件的方法来实现js代码，这样就能做到HTML网页上完全没有JS代码，将HTML(内容提供者)与JS(JS提供者)完全分开，就不会有谁先谁后的问题了。</li> 
-</ul> 
-<div class="highlight highlight-source-js">
- <pre><span class="pl-c1">window</span>.<span class="pl-en">onload</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(){
+ <li>onload（动态绑定事件）<br /> 必须要用动态绑定事件的方法来关联js代码，这样就能做到HTML网页上完全没有JS代码，将HTML(内容提供者)与JS(JS提供者)完全分开，就不会有谁先谁后的问题了。 
+  <ul> 
+   <li>动态绑定事件 
+    <div class="highlight highlight-source-js">
+     <pre><span class="pl-c1">window</span>.<span class="pl-en">onload</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(){
   <span class="pl-en">alert</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>加载页面时调用<span class="pl-pds">&quot;</span></span>);
 }</pre>
-</div> 
+    </div> </li> 
+   <li>HTML关联JS 
+    <div class="highlight highlight-text-html-basic">
+     <pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>相对路径<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre>
+    </div> </li> 
+  </ul> </li> 
+</ul> 
 <p><strong>说明：以上JS代码在打开网页时自动调用，里面的方法直接执行。</strong></p> 
 <ul> 
- <li>eg.${}</li> 
+ <li>eg.${}<br /> 这是一个良好的开发习惯。 
+  <div class="highlight highlight-source-js">
+   <pre> <span class="pl-k">var</span> eg <span class="pl-k">=</span> {}<span class="pl-c"><span class="pl-c">//</span>定义一个空对象</span>
+ <span class="pl-smi">eg</span>.<span class="pl-en">$</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">element</span>){<span class="pl-c"><span class="pl-c">//</span>对象里的一个方法</span>
+   <span class="pl-k">return</span> <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(element);<span class="pl-c"><span class="pl-c">//</span>返回根据id获取的对象元素</span>
+ }</pre>
+  </div> </li> 
 </ul> 
-<div class="highlight highlight-source-js">
- <pre><span class="pl-k">var</span> eg <span class="pl-k">=</span> {}<span class="pl-c"><span class="pl-c">//</span>定义一个空对象</span>
-<span class="pl-smi">eg</span>.<span class="pl-en">$</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">element</span>){<span class="pl-c"><span class="pl-c">//</span>对象里的一个方法</span>
-  <span class="pl-k">return</span> <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(element);<span class="pl-c"><span class="pl-c">//</span>返回根据id获取的对象元素</span>
-}</pre>
-</div> 
 <p><strong>说明：把自定义的方法全部放进eg的对象中，避免跟其他人的方法重名</strong></p> 
 <ul> 
- <li>addEventListener(事件监听)</li> 
+ <li>addEventListener(事件监听) 
+  <div class="highlight highlight-source-js">
+   <pre> <span class="pl-smi">obj</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>事件类型<span class="pl-pds">&quot;</span></span>,<span class="pl-k">function</span>(){
+   <span class="pl-en">alert</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>触发事件时执行的方法<span class="pl-pds">&quot;</span></span>);
+ },<span class="pl-c1">false</span>);</pre>
+  </div> </li> 
 </ul> 
-<div class="highlight highlight-source-js">
- <pre><span class="pl-smi">obj</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>事件类型<span class="pl-pds">&quot;</span></span>,<span class="pl-k">function</span>(){
-  <span class="pl-en">alert</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>触发事件时执行的方法<span class="pl-pds">&quot;</span></span>);
-},<span class="pl-c1">false</span>);</pre>
-</div> 
 <p><strong>说明：obj是对象，例如button的对象。事件类型不用再加&quot;on&quot;,例如单击就是&quot;click&quot;，function大括号里的代码是触发事件时执行的。&quot;false&quot;是与冒泡有关，现在我还不懂。</strong></p>
 </body>
 </html>

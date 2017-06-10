@@ -639,6 +639,147 @@ function setDocumentScrollTop(ypos)
 
 </head>
 <body class="markdown-body">
-{&quot;message&quot;:&quot;API rate limit exceeded for 58.253.69.243. (But here's the good news: Authenticated requests get a higher rate limit. Check out the documentation for more details.)&quot;,&quot;documentation_url&quot;:&quot;https://developer.github.com/v3/#rate-limiting&quot;}
+<h1> <a id="表单验证" class="anchor" href="#%E8%A1%A8%E5%8D%95%E9%AA%8C%E8%AF%81" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>表单验证</h1> 
+<p><strong>表单验证是JS的另外一个特别的作用，也是JS诞生的原因。想了解更多JS的历史请上维基百科查看，更多精彩的文字内容我是说来出来的。</strong></p> 
+<h4> <a id="注册账号和登录账号的时候我们都用到过这个功能如果我们不用js验证表单而是直接把内容提交到服务器验证的话就会很慢所以开始吧" class="anchor" href="#%E6%B3%A8%E5%86%8C%E8%B4%A6%E5%8F%B7%E5%92%8C%E7%99%BB%E5%BD%95%E8%B4%A6%E5%8F%B7%E7%9A%84%E6%97%B6%E5%80%99%E6%88%91%E4%BB%AC%E9%83%BD%E7%94%A8%E5%88%B0%E8%BF%87%E8%BF%99%E4%B8%AA%E5%8A%9F%E8%83%BD%E5%A6%82%E6%9E%9C%E6%88%91%E4%BB%AC%E4%B8%8D%E7%94%A8js%E9%AA%8C%E8%AF%81%E8%A1%A8%E5%8D%95%E8%80%8C%E6%98%AF%E7%9B%B4%E6%8E%A5%E6%8A%8A%E5%86%85%E5%AE%B9%E6%8F%90%E4%BA%A4%E5%88%B0%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%AA%8C%E8%AF%81%E7%9A%84%E8%AF%9D%E5%B0%B1%E4%BC%9A%E5%BE%88%E6%85%A2%E6%89%80%E4%BB%A5%E5%BC%80%E5%A7%8B%E5%90%A7" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>注册账号和登录账号的时候我们都用到过这个功能，如果我们不用JS验证表单，而是直接把内容提交到服务器验证的话，就会很慢，所以开始吧！</h4> 
+<ul> 
+ <li>HTML的表单 首做一个html表单： 
+  <div class="highlight highlight-text-html-basic">
+   <pre>&lt;<span class="pl-ent">form</span> <span class="pl-e">method</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>post<span class="pl-pds">&quot;</span></span> <span class="pl-e">action</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span> <span class="pl-e">onsubmit</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>return eg.regCheck();<span class="pl-pds">&quot;</span></span>&gt;
+  &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>hidden<span class="pl-pds">&quot;</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>errnum<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> /&gt;<span class="pl-c"><span class="pl-c">&lt;!--</span>记录错误次数<span class="pl-c">--&gt;</span></span>
+  账户:&lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text<span class="pl-pds">&quot;</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>userid<span class="pl-pds">&quot;</span></span>/&gt; &lt;<span class="pl-ent">br</span> /&gt;&lt;<span class="pl-ent">br</span> /&gt;
+  密码:&lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>password<span class="pl-pds">&quot;</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>userpwd<span class="pl-pds">&quot;</span></span>/&gt; &lt;<span class="pl-ent">br</span> /&gt;&lt;<span class="pl-ent">br</span> /&gt;
+  确认:&lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>password<span class="pl-pds">&quot;</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>userpwd2<span class="pl-pds">&quot;</span></span>/&gt; &lt;<span class="pl-ent">br</span> /&gt;&lt;<span class="pl-ent">br</span> /&gt;
+  邮箱:&lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text<span class="pl-pds">&quot;</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>email<span class="pl-pds">&quot;</span></span>/&gt;&lt;<span class="pl-ent">br</span> /&gt;&lt;<span class="pl-ent">br</span> /&gt;
+  性别:&lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>radio<span class="pl-pds">&quot;</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sex<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">checked</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>checked<span class="pl-pds">&quot;</span></span>/&gt;男
+  &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>radio<span class="pl-pds">&quot;</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>sex<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> /&gt;女 &lt;<span class="pl-ent">br</span> /&gt;&lt;<span class="pl-ent">br</span> /&gt;
+  年龄:
+  &lt;<span class="pl-ent">select</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>age<span class="pl-pds">&quot;</span></span>&gt;
+  &lt;<span class="pl-ent">option</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span> <span class="pl-e">selected</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>selected<span class="pl-pds">&quot;</span></span>&gt;请选择年龄段&lt;/<span class="pl-ent">option</span>&gt;
+  &lt;<span class="pl-ent">option</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span>&gt;18岁以下&lt;/<span class="pl-ent">option</span>&gt;
+  &lt;<span class="pl-ent">option</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>2<span class="pl-pds">&quot;</span></span>&gt;18-24岁&lt;/<span class="pl-ent">option</span>&gt;
+  &lt;<span class="pl-ent">option</span> <span class="pl-e">vlaue</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>3<span class="pl-pds">&quot;</span></span>&gt;24-30岁&lt;/<span class="pl-ent">option</span>&gt;
+  &lt;<span class="pl-ent">option</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>4<span class="pl-pds">&quot;</span></span>&gt;30-35岁&lt;/<span class="pl-ent">option</span>&gt;
+  &lt;<span class="pl-ent">option</span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>5<span class="pl-pds">&quot;</span></span>&gt;35岁以上&lt;/<span class="pl-ent">option</span>&gt;
+  &lt;/<span class="pl-ent">select</span>&gt;&lt;<span class="pl-ent">br</span> /&gt;&lt;<span class="pl-ent">br</span> /&gt;
+  爱好:&lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>checkbox<span class="pl-pds">&quot;</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>like<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>1<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>like<span class="pl-pds">&quot;</span></span>/&gt;上网
+  &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>checkbox<span class="pl-pds">&quot;</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>like<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>2<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>like<span class="pl-pds">&quot;</span></span>/&gt;逛街
+  &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>checkbox<span class="pl-pds">&quot;</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>like<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>3<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>like<span class="pl-pds">&quot;</span></span>/&gt;看电影
+  &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>checkbox<span class="pl-pds">&quot;</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>like<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>4<span class="pl-pds">&quot;</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>like<span class="pl-pds">&quot;</span></span>/&gt;其他&lt;<span class="pl-ent">br</span> /&gt;&lt;<span class="pl-ent">br</span> /&gt;
+  简介:&lt;<span class="pl-ent">textarea</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span> <span class="pl-e">rows</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>4<span class="pl-pds">&quot;</span></span> <span class="pl-e">cols</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>18<span class="pl-pds">&quot;</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>about<span class="pl-pds">&quot;</span></span>&gt;&lt;/<span class="pl-ent">textarea</span>&gt;&lt;<span class="pl-ent">br</span> /&gt;&lt;<span class="pl-ent">br</span> /&gt;
+  &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>submit<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>注册<span class="pl-pds">&quot;</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>regBtn<span class="pl-pds">&quot;</span></span> <span class="pl-e">style</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>display: block;<span class="pl-pds">&quot;</span></span>/&gt;
+  &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>hidden<span class="pl-pds">&quot;</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>unlockNum<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>0<span class="pl-pds">&quot;</span></span>/&gt;<span class="pl-c"><span class="pl-c">&lt;!--</span>记录解锁次数<span class="pl-c">--&gt;</span></span>
+  &lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>button<span class="pl-pds">&quot;</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>解锁<span class="pl-pds">&quot;</span></span> <span class="pl-e">style</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>display: none;<span class="pl-pds">&quot;</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>regUnlock<span class="pl-pds">&quot;</span></span> <span class="pl-e">onclick</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>eg.unlock();<span class="pl-pds">&quot;</span></span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span>&gt;
+  &lt;/<span class="pl-ent">form</span>&gt;</pre>
+  </div> 
+  <ul> 
+   <li>以上的各个元素都有自己的唯一id，各个标签都是html的基本标签，应该比较好理解。</li> 
+   <li>form返回JS的eg.regCheck()方法的调用结果。详细在JS篇。</li> 
+   <li>id为errnum的元素是用来记录填写信息错误的次数。不需要被用户看到，所以隐藏<code>type=&quot;hidden&quot;</code>。</li> 
+   <li>性别选择的<code>type=&quot;radio&quot;</code>，只能选中其中的一项，<code>checked=&quot;checked&quot;</code>，代码默认选中。</li> 
+   <li>年龄是下拉单选项，<code>value</code>用来标记选中的项，<code>selected=&quot;selected&quot;</code>代码默认选中。</li> 
+   <li>爱好是<code>type=&quot;checkbox&quot;</code>，多项选择，name、class相同，用于获取全部爱好标签。value不同，用来区分不同内容。</li> 
+   <li>注册的类型<code>type=&quot;submit&quot;</code>，点击时触动form调用的方法。</li> 
+   <li>解锁的次数是个多余的功能。</li> 
+   <li>解锁按钮是当注册错误达到3次时才会出现。</li> 
+  </ul> </li> 
+ <li>JS篇 
+  <ul> 
+   <li>创建自己的命名空间</li> 
+  </ul> 
+  <div class="highlight highlight-source-js">
+   <pre>  <span class="pl-k">var</span> eg <span class="pl-k">=</span> {} ;<span class="pl-c"><span class="pl-c">//</span>声明一个对象，做命名空间</span>
+  <span class="pl-smi">eg</span>.<span class="pl-en">$</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">id</span>){<span class="pl-c"><span class="pl-c">//</span>定义一个公共函数，用于取得元素对象</span>
+    <span class="pl-k">return</span> <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(id);
+  };</pre>
+  </div> 每次传递id参数调用<code>eg.$(id)</code>方法就可以获取对象的对象。 
+  <ul> 
+   <li>eg.regCheck()方法详细介绍<br /> <strong>以验证账号为例</strong> </li> 
+  </ul> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-smi">eg</span>.<span class="pl-en">regCheck</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(){<span class="pl-c"><span class="pl-c">//</span>点击事件</span>
+  <span class="pl-k">var</span> userid <span class="pl-k">=</span> <span class="pl-smi">eg</span>.<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>userid<span class="pl-pds">&quot;</span></span>);
+  <span class="pl-k">if</span>(<span class="pl-smi">userid</span>.<span class="pl-c1">value</span> <span class="pl-k">==</span> <span class="pl-s"><span class="pl-pds">&quot;</span><span class="pl-pds">&quot;</span></span>){
+  	<span class="pl-en">alert</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>账号不能为空<span class="pl-pds">&quot;</span></span>);
+  	<span class="pl-smi">eg</span>.<span class="pl-en">err</span>();
+  	<span class="pl-k">return</span> <span class="pl-c1">false</span> ;
+  }
+  <span class="pl-k">return</span> <span class="pl-c1">true</span> ;
+}</pre>
+  </div> 取得对象，判断值如果为空就提示用户，并且调用<code>eg.err()</code>方法，返回false表示注册失败。<br /> <strong>eg.err()方法</strong> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-smi">eg</span>.<span class="pl-en">err</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(){
+  <span class="pl-k">var</span> el <span class="pl-k">=</span> <span class="pl-smi">eg</span>.<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>errnum<span class="pl-pds">&quot;</span></span>);
+  <span class="pl-k">var</span> old <span class="pl-k">=</span> <span class="pl-smi">el</span>.<span class="pl-c1">value</span>;
+  <span class="pl-smi">el</span>.<span class="pl-c1">value</span> <span class="pl-k">=</span> <span class="pl-c1">parseInt</span>(old) <span class="pl-k">+</span> <span class="pl-c1">1</span> ;<span class="pl-c"><span class="pl-c">//</span>强制转换为整形</span>
+  <span class="pl-smi">eg</span>.<span class="pl-en">lock</span>();<span class="pl-c"><span class="pl-c">//</span>检查是否锁定</span>
+  };</pre>
+  </div> 取得记录错误次数的值，为其值加1，调用<code>eg.lock()</code>方法，判断是否应该锁定按钮。<br /> <strong>eg.lock()方法</strong> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-smi">eg</span>.<span class="pl-en">lock</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(){
+  <span class="pl-k">var</span> err <span class="pl-k">=</span> <span class="pl-smi">eg</span>.<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>errnum<span class="pl-pds">&quot;</span></span>);
+  <span class="pl-k">if</span>(<span class="pl-smi">err</span>.<span class="pl-c1">value</span> <span class="pl-k">&gt;</span> <span class="pl-c1">2</span>){
+  	<span class="pl-smi">eg</span>.<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>regBtn<span class="pl-pds">&quot;</span></span>).<span class="pl-c1">disabled</span> <span class="pl-k">=</span> <span class="pl-c1">true</span> ;<span class="pl-c"><span class="pl-c">//</span>锁定按键</span>
+  	<span class="pl-smi">eg</span>.<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>regUnlock<span class="pl-pds">&quot;</span></span>).<span class="pl-c1">style</span>.<span class="pl-c1">display</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>block<span class="pl-pds">&quot;</span></span>;<span class="pl-c"><span class="pl-c">//</span>显示解锁按键</span>
+  	<span class="pl-smi">err</span>.<span class="pl-c1">value</span> <span class="pl-k">=</span> <span class="pl-c1">0</span> ;<span class="pl-c"><span class="pl-c">//</span>清除错误次数</span>
+  }
+};</pre>
+  </div> 取得错误次数，如果错误的次数在3次以上，就将注册按钮锁定，同时将解锁按钮显示出来，最后将错误次数清零。<br /> <strong>解锁之后的事情</strong><br /> 我们回到HTML的最后一行找到<code>onclick=&quot;eg.unlock();&quot;</code>，解锁后调用eg.unlock()方法，我们看看此方法做了哪些操作。<br /> <strong>eg.unlock()方法</strong> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-smi">eg</span>.<span class="pl-en">unlock</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(){
+  <span class="pl-smi">eg</span>.<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>regBtn<span class="pl-pds">&quot;</span></span>).<span class="pl-c1">disabled</span> <span class="pl-k">=</span> <span class="pl-c1">false</span> ;<span class="pl-c"><span class="pl-c">//</span>解锁按键</span>
+  <span class="pl-smi">eg</span>.<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>regUnlock<span class="pl-pds">&quot;</span></span>).<span class="pl-c1">style</span>.<span class="pl-c1">display</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>none<span class="pl-pds">&quot;</span></span> ;<span class="pl-c"><span class="pl-c">//</span>隐藏解锁按键</span>
+  <span class="pl-k">var</span> rl <span class="pl-k">=</span> <span class="pl-smi">eg</span>.<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>unlockNum<span class="pl-pds">&quot;</span></span>);<span class="pl-c"><span class="pl-c">//</span>解锁次数</span>
+  <span class="pl-k">var</span> unlockNum <span class="pl-k">=</span> <span class="pl-smi">rl</span>.<span class="pl-c1">value</span> ;
+  <span class="pl-k">if</span>(unlockNum <span class="pl-k">&lt;=</span> <span class="pl-c1">1</span>){<span class="pl-c"><span class="pl-c">//</span>第一次解锁</span>
+  	<span class="pl-en">alert</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>再给三次机会你！！<span class="pl-pds">&quot;</span></span>);
+  	<span class="pl-smi">rl</span>.<span class="pl-c1">value</span> <span class="pl-k">=</span> <span class="pl-c1">2</span> ;
+  }<span class="pl-k">else</span> <span class="pl-k">if</span>(unlockNum <span class="pl-k">==</span> <span class="pl-c1">2</span>){<span class="pl-c"><span class="pl-c">//</span>第二次解锁</span>
+  	<span class="pl-en">alert</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>最后三次机会！！！<span class="pl-pds">&quot;</span></span>);
+  	<span class="pl-smi">rl</span>.<span class="pl-c1">value</span> <span class="pl-k">=</span> <span class="pl-c1">3</span> ;
+  }<span class="pl-k">else</span>{<span class="pl-c"><span class="pl-c">//</span>第三次解锁</span>
+  	<span class="pl-en">alert</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>你已经没机会了，请联系管理员！！<span class="pl-pds">&quot;</span></span>);
+  	<span class="pl-smi">eg</span>.<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>regUnlock<span class="pl-pds">&quot;</span></span>).<span class="pl-c1">style</span>.<span class="pl-c1">display</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>none<span class="pl-pds">&quot;</span></span>;<span class="pl-c"><span class="pl-c">//</span>两个按键都隐藏</span>
+  	<span class="pl-smi">eg</span>.<span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>regBtn<span class="pl-pds">&quot;</span></span>).<span class="pl-c1">style</span>.<span class="pl-c1">display</span><span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>none<span class="pl-pds">&quot;</span></span>;
+  }
+};</pre>
+  </div> 将注册按钮打开，解锁按钮隐藏，取得解锁的次数，根据解锁的次数给出不同的提示，第三次解锁就将两个按钮都隐藏起来，阻止你继续注册。<br /> <del><strong>到这里呢，简单的表单验证已经结束了！</strong></del> </li> 
+ <li>我们来讨论一下不简单的东西。 
+  <ul> 
+   <li>邮箱验证</li> 
+  </ul> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-k">if</span>(<span class="pl-k">!</span><span class="pl-sr"><span class="pl-pds">/</span><span class="pl-k">^</span><span class="pl-c1">[<span class="pl-c1">A-Za-z</span><span class="pl-c1">\d</span>]</span><span class="pl-k">+</span><span class="pl-c1">[<span class="pl-c1">A-Za-z</span><span class="pl-c1">\d</span><span class="pl-c1">\-_</span><span class="pl-cce">\.</span>]</span><span class="pl-k">*</span>@(<span class="pl-c1">[<span class="pl-c1">A-Za-z</span><span class="pl-c1">\d</span>]</span><span class="pl-k">+</span><span class="pl-c1">[<span class="pl-c1">A-Za-z</span><span class="pl-c1">\d</span><span class="pl-cce">\-</span>]</span><span class="pl-k">*</span><span class="pl-cce">\.</span>)<span class="pl-k">+</span><span class="pl-c1">[<span class="pl-c1">A-Za-z</span>]</span><span class="pl-k">{2,4}</span><span class="pl-k">$</span><span class="pl-pds">/</span></span>.<span class="pl-c1">test</span>(<span class="pl-smi">email</span>.<span class="pl-c1">value</span>)){
+<span class="pl-c"><span class="pl-c">//</span>正则表达式验证邮箱</span>
+  <span class="pl-en">alert</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>请输入正确的邮箱！！<span class="pl-pds">&quot;</span></span>);
+  <span class="pl-smi">eg</span>.<span class="pl-en">err</span>();
+  <span class="pl-k">return</span> <span class="pl-c1">false</span> ;
+}</pre>
+  </div> 这是正则表达式，我现在还没弄明白。如果你们要用，可以直接百度代码使用。后面我学习到了再做相应的解释。 
+  <ul> 
+   <li>通过className获得元素对象</li> 
+  </ul> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-k">var</span> likes <span class="pl-k">=</span> <span class="pl-smi">eg</span>.<span class="pl-c1">getElementsByClassName</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>like<span class="pl-pds">&quot;</span></span>);<span class="pl-c"><span class="pl-c">//</span>所有爱好的标签  </span>
+<span class="pl-smi">eg</span>.<span class="pl-en">getElementsByClassName</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">className</span>, <span class="pl-smi">element</span>){
+  <span class="pl-k">if</span>(<span class="pl-c1">document</span>.<span class="pl-smi">getElementsByClassName</span>){
+  	<span class="pl-k">return</span> (element <span class="pl-k">||</span> <span class="pl-c1">document</span>).<span class="pl-c1">getElementsByClassName</span>(className);
+  }
+  <span class="pl-k">var</span> children <span class="pl-k">=</span> (element <span class="pl-k">||</span> <span class="pl-c1">document</span>).<span class="pl-c1">getElementsByTagName</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>*<span class="pl-pds">&quot;</span></span>);
+  <span class="pl-k">var</span> elements <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Array</span>();
+  <span class="pl-k">for</span>(<span class="pl-k">var</span> i<span class="pl-k">=</span><span class="pl-c1">0</span>;i<span class="pl-k">&lt;</span><span class="pl-smi">children</span>.<span class="pl-c1">length</span>;i<span class="pl-k">++</span>){
+  	<span class="pl-k">var</span> child <span class="pl-k">=</span> children[i];
+  	<span class="pl-k">var</span> classNames <span class="pl-k">=</span> <span class="pl-smi">child</span>.<span class="pl-c1">className</span>.<span class="pl-c1">split</span>(<span class="pl-s"><span class="pl-pds">'</span> <span class="pl-pds">'</span></span>);
+  	<span class="pl-k">for</span>(<span class="pl-k">var</span> j<span class="pl-k">=</span><span class="pl-c1">0</span>;j<span class="pl-k">&lt;</span><span class="pl-smi">classNames</span>.<span class="pl-c1">length</span>;j<span class="pl-k">++</span>){
+  		<span class="pl-k">if</span>(classNames[j] <span class="pl-k">==</span> className){
+  			<span class="pl-smi">elements</span>.<span class="pl-c1">push</span>(child);
+  			<span class="pl-k">break</span> ;
+  		}
+  	}
+  } 
+  <span class="pl-k">return</span> elements;
+  };</pre>
+  </div> 有些浏览器兼容<code>getElementByClassName()</code>方法，我们为它的兼容性写了一个方法，如果浏览器兼容，就直接调用方法，如果不兼容就用一个循环遍历所有的标签，如果有className符合我们的要求就放进数组。</li> 
+</ul>
 </body>
 </html>
