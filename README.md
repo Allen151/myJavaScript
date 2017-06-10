@@ -53,9 +53,9 @@
 [动态绑定事件与监听]: onload.md
 [图片轮换]: markdown/changepic.md
 [表单验证]: markdown/regcheck.md
-[示例1]: https://allen151.github.io/test/onload.html
-[示例2]: https://allen151.github.io/test/changepic.html
-[示例3]: https://allen151.github.io/test/html/regcheck.html
+[示例1]: https://allen151.github.io/myJavaScript/onload.html
+[示例2]: https://allen151.github.io/myJavaScript/changepic.html
+[示例3]: https://allen151.github.io/myJavaScript/html/regcheck.html
 [前言]: markdown/foreword.md 
 [JavaScript简介]: markdown/intro.md
 [如何运行JavaScript]: markdown/runjs.md
