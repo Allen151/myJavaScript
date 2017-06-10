@@ -33,7 +33,11 @@
 # JavaScript的各个知识点
 
 ## 三脚猫功夫  
+
+### [前言]
 ### 初级
+- [JavaScript简介]
+- [如何运行JavaScript]
 - [动态绑定事件与监听] ~~[示例1]~~
 
 ### 高级
@@ -51,3 +55,6 @@
 [示例1]: https://allen151.github.io/test/onload.html
 [示例2]: https://allen151.github.io/test/changepic.html
 [示例3]: https://allen151.github.io/test/html/regcheck.html
+[前言]: markdown/foreword.md 
+[JavaScript简介]: markdown/intro.md
+[如何运行JavaScript]: markdown/runjs.md

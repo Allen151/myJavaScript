@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>D:\IT\github\myJavaScipt\.README.md.html</title>
+<title>D:\IT\github\myJavaScipt\markdown\.runjs.md.html</title>
 
 
 <style type="text/css">
@@ -639,47 +639,42 @@ function setDocumentScrollTop(ypos)
 
 </head>
 <body class="markdown-body">
-<h1> <a id="test" class="anchor" href="#test" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>test</h1> 
+<h1> <a id="运行javascript" class="anchor" href="#%E8%BF%90%E8%A1%8Cjavascript" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>运行JavaScript</h1> 
+<p>学习JS不用像学习C语言或java那样，另外安装些软件，例如java代码要在运行在虚拟机中。我们学习java的第一步是安装JDK。JS不用这样，因为我们的JS是在浏览器中运行的，我们电脑只要有浏览器和编辑器就行了。用记事本编辑代码也是可以的，但是因为记事本没有语法高亮，所以我用了一个比较酷的编辑器<a href="http://www.sublimetextcn.com/?Sublime%20Text3">点击下载</a></p> 
 <hr /> 
-<h2> <a id="仓库最初目的" class="anchor" href="#%E4%BB%93%E5%BA%93%E6%9C%80%E5%88%9D%E7%9B%AE%E7%9A%84" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>仓库最初目的</h2> 
-<p>做各种实验用<br /> 测试各种功能<br /> 更新一下这里的信息，试一下表情图。<br /> 
- <g-emoji alias="+1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png" ios-version="6.0">
-  👍
- </g-emoji></p> 
+<ul> 
+ <li>在HTML中使用JavaScript<br /> JS的代码是嵌入到HTML中被浏览器解析的。</li> 
+ <li>Hello World! 
+  <div class="highlight highlight-text-html-basic">
+   <pre>&lt;<span class="pl-ent">body</span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span>&gt;<span class="pl-s1"></span>
+<span class="pl-s1">  <span class="pl-c1">window</span>.<span class="pl-c1">alert</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>Hello World!!<span class="pl-pds">&quot;</span></span>);</span>
+<span class="pl-s1"></span><span class="pl-s1">&lt;</span>/<span class="pl-ent">script</span>&gt;
+&lt;/<span class="pl-ent">body</span>&gt;</pre>
+  </div> 在w3的JS手册的BOM里可以查找到alert()方法。这是JS代码嵌入到HTML中的一种方法。将JS代码放到&lt;script&gt;标签里面。&lt;script&gt;标签可以放在head或body标签里，放在body标签的最后更好些，因为html网页的加载是从上到下的，放在最后就不影响内容的显示。</li> 
+ <li>JS代码直接写在HTML代码中 
+  <div class="highlight highlight-text-html-basic">
+   <pre>&lt;<span class="pl-ent">body</span>&gt;
+  &lt;<span class="pl-ent">button</span> <span class="pl-e">onclick</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>javascript:alert('Hello World!!')<span class="pl-pds">&quot;</span></span>&gt;按钮&lt;/<span class="pl-ent">button</span>&gt;
+&lt;/<span class="pl-ent">body</span>&gt;</pre>
+  </div> 这是直接将JS的代码写在HTML里，这是最不好的，但是临时使用也是支持的。</li> 
+ <li>JS代码单独放在一个文件夹里<br /> 在html中引用JS文件，js文件的相对路径是js/text.js。在&lt;script&gt;标签里不用再写js代码了。<br /> html文件： 
+  <div class="highlight highlight-text-html-basic">
+   <pre>&lt;<span class="pl-ent">button</span> <span class="pl-e">onclick</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>fun()<span class="pl-pds">&quot;</span></span>&gt;按钮&lt;/<span class="pl-ent">button</span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>js/test.js<span class="pl-pds">&quot;</span></span>&gt;<span class="pl-s1"></span>
+<span class="pl-s1"></span><span class="pl-s1">&lt;</span>/<span class="pl-ent">script</span>&gt;</pre>
+  </div> JS文件： 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-c1">window</span>.<span class="pl-en">fun</span> <span class="pl-k">=</span> <span class="pl-k">function</span> (){<span class="pl-c"><span class="pl-c">//</span>被调用的方法</span>
+  <span class="pl-en">alert</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>Hello World!<span class="pl-pds">&quot;</span></span>);
+  }</pre>
+  </div> </li> 
+</ul> 
 <hr /> 
-<h2> <a id="后来" class="anchor" href="#%E5%90%8E%E6%9D%A5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>后来</h2> 
-<p><strong>说明</strong>：本仓库初创目的是为了用于学习github做各种各样的试验，现在基本的功能已经会用了，基本能用来储存自己的资料了，所以test仓库就不必要存在了。太多仓库会让自己的账号显得太乱，所以现在用这个仓库来存放我本人正式学习的第一门语言——JavaScript。<br /> <del><strong>介绍一下到目前为止我的学习过的语言</strong></del></p> 
+<p>三种引入JS代码的方式已经介绍完了，这里按键调用JS代码还不是最好的方法，更好的方法是通过<a href="..\.onload.md.html">动态绑定事件</a>。后面还会多次提到。上面用到的<code>window.alert();</code>方法是通过弹窗口的方式显示消息，我们还可以通过<code>document.writer();</code>方法将信息写在浏览器上哦！<br /> <strong>总结：</strong></p> 
 <ul> 
- <li>C语言</li> 
- <li>java</li> 
- <li>javaWeb</li> 
- <li>HTML/CSS</li> 
- <li>JavaScript</li> 
- <li>JQ</li> 
- <li>Node.JS</li> 
-</ul> 
-<p><strong>学习的状况用一句话概括：===没学。</strong></p> 
-<hr /> 
-<h2> <a id="开始" class="anchor" href="#%E5%BC%80%E5%A7%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>开始</h2> 
-<p>2017年6月9日开始用这个仓库进行JavaScript的学习<br /> 里面有我觉得重要的代码文件，也有各个代码的说明文件，以下是各个知识点的总目录。</p> 
-<blockquote> 
- <p>初衷是用来放置我觉得重要的代码文件，到了今时今日，已经用来放置全部文件了。那我就用这个仓库存放我学习的完整文件吧！！</p> 
-</blockquote> 
-<p align="right">——潘栋民</p> 
-<h1> <a id="javascript的各个知识点" class="anchor" href="#javascript%E7%9A%84%E5%90%84%E4%B8%AA%E7%9F%A5%E8%AF%86%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>JavaScript的各个知识点</h1> 
-<h2> <a id="三脚猫功夫" class="anchor" href="#%E4%B8%89%E8%84%9A%E7%8C%AB%E5%8A%9F%E5%A4%AB" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>三脚猫功夫</h2> 
-<h3> <a id="前言" class="anchor" href="#%E5%89%8D%E8%A8%80" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="markdown\.foreword.md.html">前言</a> </h3> 
-<h3> <a id="初级" class="anchor" href="#%E5%88%9D%E7%BA%A7" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>初级</h3> 
-<ul> 
- <li><a href="markdown\.intro.md.html">JavaScript简介</a></li> 
- <li><a href="markdown\.runjs.md.html">如何运行JavaScript</a></li> 
- <li> <a href=".onload.md.html">动态绑定事件与监听</a> <del><a href="https://allen151.github.io/test/onload.html">示例1</a></del> </li> 
-</ul> 
-<h3> <a id="高级" class="anchor" href="#%E9%AB%98%E7%BA%A7" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>高级</h3> 
-<ul> 
- <li> <a href="markdown\.changepic.md.html">图片轮换</a> <del><a href="https://allen151.github.io/test/changepic.html">示例2</a></del> </li> 
- <li> <a href="markdown\.regcheck.md.html">表单验证</a> <del><a href="https://allen151.github.io/test/html/regcheck.html">示例3</a></del> </li> 
-</ul> 
-<h3> <a id="实战" class="anchor" href="#%E5%AE%9E%E6%88%98" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>实战</h3>
+ <li>将JS代码嵌入到html代码中运行</li> 
+ <li>有三种嵌入方法<br /> 1.直接写在HTMl代码中<br /> 2.写在&lt;script&gt;标签里<br /> 3.写在单独的JS文件里</li> 
+</ul>
 </body>
 </html>
