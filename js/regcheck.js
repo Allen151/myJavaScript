@@ -52,6 +52,7 @@ eg.regCheck = function(){//点击事件
 		eg.err();
 		return false;
 	}
+	alert("注册成功，但是本网页没有实际功能！！谢谢！");
 	return true ;
 };
 //记录出错次数
@@ -105,3 +106,4 @@ eg.getElementsByClassName = function(className, element){
 	} 
 	return elements;
 };
+

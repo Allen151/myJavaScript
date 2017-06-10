@@ -7,10 +7,11 @@
 
 # JavaScript的各个知识点
 
-## 李兴华老师的课堂笔记  
+## 三脚猫功夫  
 ### 初级
 - [动态绑定事件与监听] ~~[示例1]~~
 - [图片轮换] ~~[示例2]~~
+- [表单验证] ~~[示例3]~~
 ### 高级
 
 
@@ -21,5 +22,7 @@
 <!-- 中转到其他文档的链接 -->
 [动态绑定事件与监听]: onload.md
 [图片轮换]: markdown/changepic.md
+[表单验证]: markdown/regcheck.md
 [示例1]: https://allen151.github.io/test/onload.html
 [示例2]: https://allen151.github.io/test/changepic.html
+[示例3]: https://allen151.github.io/test/html/regcheck.html

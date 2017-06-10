@@ -1,6 +1,7 @@
 ## onload、eg.${}、addEventListener
 
-- onload（动态绑定事件）
+- onload（动态绑定事件）  
+必须要用动态绑定事件的方法来实现js代码，这样就能做到HTML网页上完全没有JS代码，将HTML(内容提供者)与JS(JS提供者)完全分开，就不会有谁先谁后的问题了。
 ```javascript
 window.onload = function(){
   alert("加载页面时调用");
