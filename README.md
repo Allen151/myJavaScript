@@ -40,7 +40,9 @@
 - [JavaScript简介]
 - [如何运行JavaScript]
 - [动态绑定事件与监听] ~~[示例1]~~
-- [基础1]
+- [基础1]  
+- [基础2]
+- [基础3]
 ### 高级
 - [图片轮换] ~~[示例2]~~
 - [表单验证] ~~[示例3]~~
@@ -60,5 +62,5 @@
 [JavaScript简介]: markdown/intro.md
 [如何运行JavaScript]: markdown/runjs.md
 [基础1]: markdown/basis.md
-
-
+[基础2]: markdown/basis2.md
+[基础3]: markdown/basis3.md
