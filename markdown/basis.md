@@ -56,8 +56,60 @@
 
 
 ### 语句  
+**JavaScript 语句**
+>JavaScript 语句向浏览器发出的命令。语句的作用是告诉浏览器该做什么。
+ 
+**分号**  
+>在JS中，分号是可选的，但是推荐尽量使用分号结束语句。  
+
+**JS代码**  
+>浏览器会按照编写顺序来执行每条语句。  
+
+**JavaScript 代码块**  
+>JavaScript 语句通过代码块的形式进行组合。  
+块由左花括号开始，由右花括号结束。  
+块的作用是使语句序列一起执行。  
+JavaScript 函数是将语句组合在块中的典型例子。  
+
+**JavaScript 对大小写敏感。**  
+>JavaScript 对大小写是敏感的。  严格区分大小写。  
+当编写 JavaScript 语句时，请留意是否关闭大小写切换键。
+
+**空格**  
+>JavaScript会忽略多余的空格。您可以向脚本添加空格，来提高其可读性。
+
+**JavaScript 是脚本语言。**  
+>浏览器会在读取代码时，逐行地执行脚本代码。  
+而对于传统编程来说，会在执行前对所有代码进行编译。
+
+---
 
 ### 注释
+我们通过增加注释来解释代码，或通过注释来提高代码的可读性。  
+**单行注释**  
+```javascript
+<script type="text/javascript">
+	var fun = function(){//我是一个方法
+		document.write("Hello World!!");
+	}
+</script>
+```  
+**多行注释** 
+```javascript
+<script type="text/javascript">
+/*
+	这是个多行注释
+	是用来作一些重要说明的
+	以下这个方法，点击按钮时调用
+ */
+	var fun = function(){//我是一个方法
+		document.write("Hello World!!");
+	}
+</script>
+```
+---
 
-
-**总结：**
+**总结：**  
+- JS对象HTML的一些基本的操作  
+- JS语句的一些特点，有些不同于其他的编程语言特性  
+- JS的注释
