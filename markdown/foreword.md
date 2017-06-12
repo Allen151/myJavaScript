@@ -6,6 +6,12 @@
 以下这些资料是我此仓库内容的来源，你们去尽情地访问吧！！  
 - [万维网][w3]——很好的前端学习网站  
 - [李兴华老师]——这个链接是李老师的一个课程  
+- [你不懂JS：入门与进阶][1]  
+- [你不懂JS：作用域与闭包][2]  
+- [你不懂JS: this 与对象原型][3]
+- [你不懂JS：类型与文法][4]  
+- [你不懂JS: 异步与性能][5]  
+- [你不懂JS：ES6与未来][6]
 
 ## 前端学习路线  
 我自己也不清楚学习路线应该是怎么样，应该先学什么后学什么？  
@@ -41,4 +47,10 @@
 <!--文件中用到的链接-->
 [w3]: http://www.w3school.com.cn
 [李兴华老师]: http://edu.51cto.com/course/5821.html
-[王顶老师]: http://edu.51cto.com/course/7845.html
+[王顶老师]: http://edu.51cto.com/course/7845.html  
+[1]: https://github.com/getify/You-Dont-Know-JS/blob/1ed-zh-CN/up%20&%20going/README.md#you-dont-know-js-up--going
+[2]: https://github.com/getify/You-Dont-Know-JS/blob/1ed-zh-CN/scope%20&%20closures/README.md#you-dont-know-js-scope--closures
+[3]: https://github.com/getify/You-Dont-Know-JS/blob/1ed-zh-CN/this%20&%20object%20prototypes/README.md#you-dont-know-js-this--object-prototypes  
+[4]: https://github.com/getify/You-Dont-Know-JS/blob/1ed-zh-CN/types%20&%20grammar/README.md#you-dont-know-js-types--grammar  
+[5]: https://github.com/getify/You-Dont-Know-JS/blob/1ed-zh-CN/async%20&%20performance/README.md#you-dont-know-js-async--performance
+[6]: https://github.com/getify/You-Dont-Know-JS/blob/1ed-zh-CN/es6%20&%20beyond/README.md#you-dont-know-js-es6--beyond
