@@ -47,7 +47,10 @@
 - [图片轮换] ~~[示例2]~~
 - [表单验证] ~~[示例3]~~
 
-### 实战
+### 实战  
+
+### 我的一些学习计划  
+#### [在GitHub上使用Hexo搭建博客]
 
 
 
@@ -63,4 +66,5 @@
 [如何运行JavaScript]: markdown/runjs.md
 [基础1]: markdown/basis.md
 [变量/数据类型/操作符]: markdown/basis2.md
-[语句/函数]: markdown/basis3.md
+[语句/函数]: markdown/basis3.md  
+[在GitHub上使用Hexo搭建博客]: markdown/blog.md
