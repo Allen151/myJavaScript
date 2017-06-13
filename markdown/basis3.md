@@ -48,17 +48,74 @@ while语句属于前测试循环语句，也就是说，在循环体内的代码
 ```
 条件不满足，永远不执行代码块。满足条件后执行代码块，执行完后再回来执行判断条件。  
 - for语句  
-
-
+for语句也是一种前测试循环语句，但它具有在执行循环之前初始化变量和定义循环后要执行的代码的能力。以下for语句的语法：  
+```javascript
+<script type="text/javascript">
+	for(初始化条件;循环条件;循环后代码){
+		满足条件执行代码块 ;
+	}	
+</script>
+```
+for能做的事while也能做，while能做的事for也能做。  
+ECMAScript中不存在块级作用域，因为在循环体内的变量也可以在外部访问到。  
+for语句存在极大的灵活性，所以经常用到。  
 - for-in语句  
-
-
+for-in语句是一种精准的迭代语句，可以用来枚举对象的属性。以下是for-in语句的语法：  
+```javascript
+<script type="text/javascript">
+	for(var propName in window){
+		document.write(propName);
+	}	
+</script>
+```  
+这个例子会将window对象里的所有属性枚举一遍，将属性名赋值给propName变量。属性没有顺序，输出的顺序不可预测。  
 - label语句  
-
-
+使用label语句可以在代码中添加标签，以便将来使用。以下是label语句的语法：  
+```javascript
+<script type="text/javascript">
+	label:statement
+</script>
+```
+例子：
+```javascript
+<script type="text/javascript">
+	start:for(var i=0; i<count; i++){
+		alert(i);
+	}
+</script>
+```
+这个例子定义了start标签可以在将来由break或continue语句引用。加标签的语句一般要与for语句等循环语句配合使用。  
 - break和continue语句  
-
-
+  - break语句  
+    执行break语句会立即退出循环，强制继续执行循环后面的语句。  
+  ```javascript
+  <script type="text/javascript">
+	var num = 0 ;
+	for(var i=1; i<10; i++){
+		if(i % 5 == 0){
+			break ;
+		}
+		num++ ;
+	}
+	alert(num);//4
+  </script>
+  ```
+  以上是一个循环，循环一次num递增一次。第5次的时候执行break语句，后面的代码不执行了，直接跳出循环，执行`alert(num);`，所以最后显示的4是循环的次数。   
+  - continue语句  
+  continue语句虽然也是立即退出循环，但是退出循环后会从循环的顶部继续执行。将上面的代码`break;`替换成`continue;`  
+  ```javascript
+  <script type="text/javascript">
+	var num = 0 ;
+	for(var i=1; i<10; i++){
+		if(i % 5 == 0){
+			continue ;
+		}
+		num++ ;
+	}
+	alert(num);//8
+  </script>
+  ```  
+  第5次与第10次的时候执行continue语句，跳出循环不执行`num++;`了，但是是从循环的开始处重新执行循环，所以最后num是8。  
 - with语句  
 
 
