@@ -23,7 +23,7 @@
 	}else{
 		语句块2 ;
 	}
-	</script>
+</script>
 ```
 判断条件，如果是true就执行语句块1，如果是false就执行语句块2。结果不一定是Boolean值，ECMAScript会自动调用Boolean()转换函数将这个表达转换成Boolean值。  
 - do-while语句  
@@ -195,22 +195,22 @@ ECMAScript函数的参数与多大数其他语言的参数有所不同。ECMAScr
 		alert("hello "+arguments[0]+","+arguments[1]);
 	}
 	sayHi("Allen151","my name is Tony");
-</script>
+	</script>
   ```
   上面这个例子没有再为参数命名为`name`和`message`了，也一样能达到想要的结果，由此说明参数名不是必要的。JS的一个特点：**命名的参数只是提供便利，但是不是必需的。**  
   另外，在其他语言，定义一个函数的时候要指定函数的参数数据类型，在JS中就不用，JS中的参数你随意，真的是太随意了，我也不好说。
   如下面的例子，我们可以传递随意个参数没有任何问题。  
   ```javascript
   <script type="text/javascript">
-	function howManyArgs(){
-		return alert(arguments.length);
-	}
+	  function howManyArgs(){
+		  return alert(arguments.length);
+	  }
 	howManyArgs("String",50);//2
 	howManyArgs();//0
 	howManyArgs(10);//1
-</script>
-  ```
-  我们还可以根据参数不同做出不同的反应，这一点其实就是java语言里所说的**函数的重载**，虽然算不上完美，但也可以弥补ECMAScript的这一缺陷了。  
+	</script>
+  ```  
+  我们还可以根据参数不同做出不同的反应，这一点其实就是java语言里所说的**函数的重载**，虽然算不上完美，但也可以弥补ECMAScript的这一缺陷了。    
   ```javascript
   <script type="text/javascript">
 	function doAdd(){
@@ -222,11 +222,12 @@ ECMAScript函数的参数与多大数其他语言的参数有所不同。ECMAScr
 	}
 	doAdd(10);//一个参数+10:20
 	doAdd(20,30)//两个参数相加：50
-</script>
-  ```
+	</script>
+  ```  
+  
   `arguments`，也可以与命名参数一起使用的，例子够多了，就不举了。   
   
-  一个关于`arguments`有意思的行为：(`arguments`的值总是与对应的参数同步)
+  一个关于`arguments`有意思的行为：(`arguments`的值总是与对应的参数同步)  
   ```javascript
   <script type="text/javascript">
 	function doAdd(num1,num2){
