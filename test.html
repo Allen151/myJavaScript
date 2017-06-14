@@ -5,11 +5,14 @@
 </head>
 <body>
 <script type="text/javascript">
-	function doAdd(num1,num2){
-		arguments[1] = 10 ;//总是将第二个参数的值改为10
-		alert(arguments[0]+num2);//两个数相加
+	function checkFunction(num){
+		return alert("我是第一个函数，值是："+num);
 	}
-	doAdd(100);//结果是110
+	function checkFunction(num1,num2){
+		return alert("我是第二个函数，值是："+(num1+num2));
+	}
+	//我是第二个函数，值是：NaN  因为num2是undefined，所以最终结果是NaN
+	checkFunction(100);
 </script>
 </body>
 </html>

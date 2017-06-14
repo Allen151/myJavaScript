@@ -249,9 +249,36 @@ ECMAScript函数的参数与多大数其他语言的参数有所不同。ECMAScr
 	doAdd(100);//NaN，num2的值是undefined
 </script>
   ```  
-  其次，重写`arguments`的值会导致语法错误，代码无法执行。ECMAScript中所有参数传递的都是值，不可能通过引用传递参数，就是说，`doAdd(100);`就相当于把`100`复制出来一个，再给函数使用。
+  其次，重写`arguments`的值会导致语法错误，代码无法执行。ECMAScript中所有参数传递的都是值，不可能通过引用传递参数的，就是说，`doAdd(100);`就相当于把`100`复制多一个出来，再给函数使用。
 
 - 没有重载  
+ECMAScript不能像java这类语言那样实现函数的重载，在java中一个函数可以定义两次，只要这两个定义的签名（接收的参数类型和数量）不同即可。像前面说到的，ECMAScript的函数的参数是由包含零个或多个值的数组来表示的。而没有函数签名，是无法实现真正的函数重载的。  
+**如果我们一定要定义两个重名的函数会是什么情况呢？？**后面的那个在效  
+```javascript
+<script type="text/javascript">
+	function checkFunction(num){
+		return alert("我是第一个函数，值是："+num);
+	}
+	function checkFunction(num1,num2){
+		return alert("我是第二个函数，值是："+(num1+num2));
+	}
+	//我是第二个函数，值是：NaN  因为num2是undefined，所以最终结果是NaN
+	checkFunction(100);
+</script>
+```
+后定义的函数覆盖了先定义的函数。  
+**如前面所说的，ECMAScript没有真正意义上的函数重载，但可以判断传入函数中的参数，根据函数不同做出不同的反应，可以模仿方法重载。**  
 
+## 总结  
 
-## 总结
+1. ECMAScript从其他语言中借鉴了很多流程控制语句，例如if语句、for语句和switch语句等。ECMAScript中的函数与其他语句中的函数有很多不同之处。  
+
+2. 无须指定函数的返回值，因为任何ECMAScript函数都可以在任何时候返回任何值。  
+
+3. 实际上，示指定返回值的函数返回的是一个特殊的undefined值。  
+
+4. ECMAScript中没有函数签名的概念，也就是函数接收参数的特别方式————以一个包含零个或多个数值的数组的形式传递。  
+
+5. 可以向函数传递任意个数任意类型的参数，在函数内可以用`arguments`对象来访问这些参数。  
+
+6. 由于ECMAScript函数不存在函数签名，所以ECMAScript函数不能重载。  
