@@ -224,8 +224,32 @@ ECMAScript函数的参数与多大数其他语言的参数有所不同。ECMAScr
 	doAdd(20,30)//两个参数相加：50
 </script>
   ```
-  `arguments`，也可以与命名参数一起使用的，例子够多了，就不举了。
+  `arguments`，也可以与命名参数一起使用的，例子够多了，就不举了。   
   
+  一个关于`arguments`有意思的行为：(`arguments`的值总是与对应的参数同步)
+  ```javascript
+  <script type="text/javascript">
+	function doAdd(num1,num2){
+		arguments[1] = 10 ;//总是将第二个参数的值改为10
+		alert(arguments[0]+num2);//两个数相加
+	}
+	doAdd(100,200);//结果是110
+</script>
+  ```
+  **说明：**  
+    每次执行`doAdd()`函数都会通过`arguments`重写`num2`的值为10，在后面调用`num2`时发现`num2`的值也改变了，这说明`arguments`的值总是与对应参数的值同步，并不是说这两个值访问的是同一个内存空间，它们的空间是独立的，但是值是同步的。**注意**如果传递一个参数进来，再设置`arguments[1]`的值就不会反应到命名参数`num2`中，但是也没有报错，可以用`arguments[2]`来调用第二个参数的值。这是因为`arguments`对象的长度是由传递进来的参数个数决定的，不是由定义命名参数的个数决定的。  
+  **记住**没有传递值的命名参数的值是`undefined`值，是永远改变不了的。这就跟定义了没有初始化是同个道理。  
+  **严格模式**对如何使用`arguments`对象做出了一些限制。首先像下面的例子中那样赋值是无效的，即使把`arguments[1]`的值设置为10，num2的值依然是`undefined`。
+  ```javascript
+  <script type="text/javascript">
+	function doAdd(num1,num2){
+		arguments[1] = 10 ;//总是将第二个参数的值改为10
+		alert(arguments[0]+num2);//两个数相加
+	}
+	doAdd(100);//NaN，num2的值是undefined
+</script>
+  ```  
+  其次，重写`arguments`的值会导致语法错误，代码无法执行。ECMAScript中所有参数传递的都是值，不可能通过引用传递参数，就是说，`doAdd(100);`就相当于把`100`复制出来一个，再给函数使用。
 
 - 没有重载  
 

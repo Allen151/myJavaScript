@@ -5,15 +5,11 @@
 </head>
 <body>
 <script type="text/javascript">
-	function doAdd(){
-		if(arguments.length == 1){
-			return alert("一个参数+10："+(arguments[0]+10));
-		}if(arguments.length == 2){
-			return alert("两个参数相加："+(arguments[0]+arguments[1]));
-		}
+	function doAdd(num1,num2){
+		arguments[1] = 10 ;//总是将第二个参数的值改为10
+		alert(arguments[0]+num2);//两个数相加
 	}
-	doAdd(10);//一个参数+10:20
-	doAdd(20,30)//两个参数相加：50
+	doAdd(100);//结果是110
 </script>
 </body>
 </html>
