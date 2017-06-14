@@ -116,15 +116,116 @@ for-in语句是一种精准的迭代语句，可以用来枚举对象的属性�
   </script>
   ```  
   第5次与第10次的时候执行continue语句，跳出循环不执行`num++;`了，但是是从循环的开始处重新执行循环，所以最后num是8。  
-- with语句  
-
+- with语句   
+with语句的作用是将代码的作用域设置到一个特定的对象中。  
+with的作用是简化多次编写一个对象，例如：  
+```javascript
+<script type="text/javascript">
+	var qs = location.search.substring(1);  
+	var hostName = location.hostname ;
+	var url = location.href ;
+</script>
+```
+上面的代码都有location对象，我们使用with语句要以改写成如下：  
+```javascript
+<script type="text/javascript">
+	with(location){
+		var qs = search.substring(1);  
+		var hostName = hostname ;
+		var url = href ;
+	}
+</script>
+```
+上面的例子中使用with语句关联了location对象。意味着with里面的变量首先被认为是一个局部变量，如果在局部环境中找不至该变量的定义，就会查询with中指定的location对象中是否有同名属性，如果发现了同名属性，就以location的对象属性作为变量的值。  
+**严格模式下不允许使用with语句，否则视为语法错误。开发大型程序时不使用with语句。**
+- switch语句  
+很多种类C语言都有switch语句，JS的switch语句有些特点，我们重点说一下它的不同点。  
+switch语句与if语句关系最密切。  
+```javascript
+<script type="text/javascript">
+	var i = 10 ;
+	switch(i){
+		case 1:
+			alert("i的值是1");
+			break ;
+		case 5:
+			alert("i的值是5");
+			break ;
+		case 10:
+			alert("i的值是10");
+			break ;
+		case 20:
+			alert("i的值是20");
+			break ;
+		default:
+			alert("不知道");
+	}
+</script>
+```
+JS的switch语句有以下特点：
+  - case的值可以是其他数据类型，甚至可以是表达式。
+  - case判断的是全等表达式，不进行类型转换。
 
 
 ## 函数  
+通过函数可以封装任意多条语句，而且可以在任何地方，任何时候调用执行。ECMAScript中的函数使用function关键字来声明，后跟一组参数，以及函数体。函数的格式：  
+```javascript
+<script type="text/javascript">
+	function sayHi(name){
+		alert("hello "+name);
+		return "hi" ;
+	}
+	alert(sayHi("Allen151"));
+</script>
+```
+函数可以有返回值，用`return`来指定返回值，执行return后，后面的代码都不再执行了。  
+函数命名规则：  
+>函数名不能是关键字或预留关键字  
+参数名不能是关键字或预留关键字  
+函数内不能出现两个重名参数名。 
 
 
 - 理解参数  
+ECMAScript函数的参数与多大数其他语言的参数有所不同。ECMAScript函数不介意传递进来多少个参数，也不在乎传进来参数是什么数据类型。原因是ECMAScript中的参数在内部是用一个数组来表示的。实际上在函数体内，我们可以通过arguments对象来访问这个参数数组，从而获取数组的每个参数。
 
+  `arguments`对象只是与数组`Array`对象类似，可以用`argument[0]`来访问第一个元素，可以用`argument.length`来查询数组的长度。用这种方式来访问参数的好处是不用为参数命名，即不显式地使用命名参数。如：
+  ```javascript
+  <script type="text/javascript">
+	function sayHi(){
+		alert("hello "+arguments[0]+","+arguments[1]);
+	}
+	sayHi("Allen151","my name is Tony");
+</script>
+  ```
+  上面这个例子没有再为参数命名为`name`和`message`了，也一样能达到想要的结果，由此说明参数名不是必要的。JS的一个特点：**命名的参数只是提供便利，但是不是必需的。**  
+  另外，在其他语言，定义一个函数的时候要指定函数的参数数据类型，在JS中就不用，JS中的参数你随意，真的是太随意了，我也不好说。
+  如下面的例子，我们可以传递随意个参数没有任何问题。  
+  ```javascript
+  <script type="text/javascript">
+	function howManyArgs(){
+		return alert(arguments.length);
+	}
+	howManyArgs("String",50);//2
+	howManyArgs();//0
+	howManyArgs(10);//1
+</script>
+  ```
+  我们还可以根据参数不同做出不同的反应，这一点其实就是java语言里所说的**函数的重载**，虽然算不上完美，但也可以弥补ECMAScript的这一缺陷了。  
+  ```javascript
+  <script type="text/javascript">
+	function doAdd(){
+		if(arguments.length == 1){
+			return alert("一个参数+10："+(arguments[0]+10));
+		}if(arguments.length == 2){
+			return alert("两个参数相加："+(arguments[0]+arguments[1]));
+		}
+	}
+	doAdd(10);//一个参数+10:20
+	doAdd(20,30)//两个参数相加：50
+</script>
+  ```
+  `arguments`，也可以与命名参数一起使用的，例子够多了，就不举了。
+  
 
 - 没有重载  
 

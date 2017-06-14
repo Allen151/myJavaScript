@@ -5,14 +5,15 @@
 </head>
 <body>
 <script type="text/javascript">
-	var num = 0 ;
-	for(var i=1; i<10; i++){
-		if(i % 5 == 0){
-			break ;
+	function doAdd(){
+		if(arguments.length == 1){
+			return alert("一个参数+10："+(arguments[0]+10));
+		}if(arguments.length == 2){
+			return alert("两个参数相加："+(arguments[0]+arguments[1]));
 		}
-		num++ ;
 	}
-	alert(num);
+	doAdd(10);//一个参数+10:20
+	doAdd(20,30)//两个参数相加：50
 </script>
 </body>
 </html>
