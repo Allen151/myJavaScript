@@ -256,7 +256,7 @@ ECMAScript函数的参数与多大数其他语言的参数有所不同。ECMAScr
 
 - 没有重载  
 ECMAScript不能像java这类语言那样实现函数的重载，在java中一个函数可以定义两次，只要这两个定义的签名（接收的参数类型和数量）不同即可。像前面说到的，ECMAScript的函数的参数是由包含零个或多个值的数组来表示的。而没有函数签名，是无法实现真正的函数重载的。  
-**如果我们一定要定义两个重名的函数会是什么情况呢？？**后面的那个在效  
+**如果我们一定要定义两个重名的函数会是什么情况呢**？？后面的那个在效  
 ```javascript
 <script type="text/javascript">
 	function checkFunction(num){
