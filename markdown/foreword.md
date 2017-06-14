@@ -5,7 +5,10 @@
 ## 参考资料  
 以下这些资料是我此仓库内容的来源，你们去尽情地访问吧！！  
 - [万维网][w3]——很好的前端学习网站  
-- [李兴华老师]——这个链接是李老师的一个课程  
+- [李兴华老师]——这个链接是李老师的一个课程   
+- [javascript高级程序设计]——本文档很大一部分内容是我看这本书的笔记。  
+
+下面这部分是一位外国人写的书，被翻译成中文了，不错。  
 - [你不懂JS：入门与进阶][1]  
 - [你不懂JS：作用域与闭包][2]  
 - [你不懂JS: this 与对象原型][3]
@@ -47,7 +50,8 @@
 <!--文件中用到的链接-->
 [w3]: http://www.w3school.com.cn
 [李兴华老师]: http://edu.51cto.com/course/5821.html
-[王顶老师]: http://edu.51cto.com/course/7845.html  
+[王顶老师]: http://edu.51cto.com/course/7845.html    
+[javascript高级程序设计]: https://book.douban.com/subject/10546125/
 [1]: https://github.com/getify/You-Dont-Know-JS/blob/1ed-zh-CN/up%20&%20going/README.md#you-dont-know-js-up--going
 [2]: https://github.com/getify/You-Dont-Know-JS/blob/1ed-zh-CN/scope%20&%20closures/README.md#you-dont-know-js-scope--closures
 [3]: https://github.com/getify/You-Dont-Know-JS/blob/1ed-zh-CN/this%20&%20object%20prototypes/README.md#you-dont-know-js-this--object-prototypes  
