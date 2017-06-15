@@ -19,9 +19,26 @@ ECMAScript的变量存放的数据的数据类型有两种，其中一种是基�
 **注意**：  
 很多语言中String数据类型是以对象的形式来表示的，因此被认为是引用类型。**但是在ECMAScript中，String数据类型不是引用类型。**
 
-
 ## 动态的属性  
-
+定义基本类型数值和引用类型数据类似，但是操作就有很大的不同了。  
+- 引用类型的值我们可以动态地添加属性与方法，例：  
+```javascript
+<script type="text/javascript">
+	var person = new Object() ; //定义一个对象  
+	person.name = "Nicholas" ;//动态地添加对象的属性  
+	alert(person.name);			//Nicholas
+</script>
+```
+上面的代码，先创建一个对象存放于`person`变量中，动态地添加`person`对象的`name`属性值为`Nicholas`，最后用`alert(person.name);`输出动态添加的值。如果对象不被销毁，这个属性将一直存在。  
+- 基本类型就不能动态添加属性，虽然不会报错，但是无效，如下：  
+```javascript
+<script type="text/javascript">
+	var name = "Nicholas" ;//基本类型值
+	name.age = 20 ;  //动态添加属性
+	alert(name.age);  //undefined
+</script>
+```
+引用类型值可以动态添加属性，基本类型值不可以动态添加属性。
 
 
 ## 复制变量  

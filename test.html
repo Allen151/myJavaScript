@@ -5,14 +5,9 @@
 </head>
 <body>
 <script type="text/javascript">
-	function checkFunction(num){
-		return alert("我是第一个函数，值是："+num);
-	}
-	function checkFunction(num1,num2){
-		return alert("我是第二个函数，值是："+(num1+num2));
-	}
-	//我是第二个函数，值是：NaN  因为num2是undefined，所以最终结果是NaN
-	checkFunction(100);
+	var name = "Nicholas" ;//基本类型值
+	name.age = 20 ;  //动态添加属性
+	alert(name.age);  //undefined
 </script>
 </body>
 </html>

@@ -4,9 +4,9 @@
 ---
 - 在HTML中使用JavaScript  
   JS的代码是嵌入到HTML中被浏览器解析的。
-- Hello World!
-  ```html
-  <body>
+- Hello World!  
+  ```javascript
+  <body>  
   <script type="text/javascript">
     window.alert("Hello World!!");
   </script>
@@ -37,7 +37,8 @@
 	
 ---
 
-三种引入JS代码的方式已经介绍完了，这里按键调用JS代码还不是最好的方法，更好的方法是通过[动态绑定事件]。后面还会多次提到。上面用到的`window.alert();`方法是通过弹窗口的方式显示消息，我们还可以通过`document.writer();`方法将信息写在浏览器上哦！  
+三种引入JS代码的方式已经介绍完了，这里按键调用JS代码还不是最好的方法，更好的方法是通过[动态绑定事件]。后面还会多次提到。上面用到的`window.alert();`方法是通过弹窗口的方式显示消息，我们还可以通过`document.writer();`方法将信息写在浏览器上哦！    
+
 **总结：**  
   - 将JS代码嵌入到html代码中运行
   - 有三种嵌入方法  
