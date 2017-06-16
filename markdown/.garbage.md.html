@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>D:\IT\github\myJavaScipt\.README.md.html</title>
+<title>D:\IT\github\myJavaScipt\markdown\.garbage.md.html</title>
 
 
 <style type="text/css">
@@ -639,53 +639,31 @@ function setDocumentScrollTop(ypos)
 
 </head>
 <body class="markdown-body">
-<h1> <a id="javascript学习过程的各个小笔记" class="anchor" href="#javascript%E5%AD%A6%E4%B9%A0%E8%BF%87%E7%A8%8B%E7%9A%84%E5%90%84%E4%B8%AA%E5%B0%8F%E7%AC%94%E8%AE%B0" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>JavaScript学习过程的各个小笔记</h1> 
-<p><strong><del>仓库最初创建目的</del></strong><br /> 做各种实验用<br /> 测试各种功能<br /> 更新一下这里的信息，试一下表情图。<br /> 
- <g-emoji alias="+1" fallback-src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f44d.png" ios-version="6.0">
-  👍
- </g-emoji></p> 
+<h1> <a id="垃圾收集" class="anchor" href="#%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>垃圾收集</h1> 
+<p>学习每一种语言都要学习垃圾回收，才能码出性能强的代码。但是现在学这些东西，感觉到很困惑。那有什么办法。<br /> javascript是一门具有自动垃圾收集机制的编程语言，开发人员不用关心内存分配和回收问题。<br /> javascript具有自动垃圾收集机制，也就是说执行环境会管理代码执行使用的内存情况。C语言和C++之类的语言开发人员的一项重要工作就是手工跟踪内存的使用情况。javascript开发人员不用再关心内存的使用问题，内存的分配及回收完全实现自动管理。原理很简单，找到不用的变量，释放其占用的内存就可以。可以按固定的时间间隔或设定时间间隔周期性地执行回收这一操作。<br /> 局部变量的正常生命周期：函数执行过程中存在，执行中会为变量分配相应的栈或堆内存。执行完函数后，变量所占的内存就是垃圾，就要清理。垃圾收集器会标记这些无用的内存，到了清理时间就清理。不同的浏览器会有不同的无用变量标记方法。 本文目录</p> 
+<ul> 
+ <li>标记清除</li> 
+ <li>引用计数</li> 
+ <li>性能问题</li> 
+ <li>管理内存</li> 
+</ul> 
 <hr /> 
-<h2> <a id="后来" class="anchor" href="#%E5%90%8E%E6%9D%A5" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>后来</h2> 
-<p><strong>说明</strong>：本仓库初创目的是为了用于学习github做各种各样的试验，现在基本的功能已经会用了，基本能用来储存自己的资料了，所以test仓库就不必要存在了。太多仓库会让自己的账号显得太乱，所以现在用这个仓库来存放我本人正式学习的第一门语言——JavaScript。<br /> <del><strong>介绍一下到目前为止我的学习过的语言</strong></del></p> 
-<ul> 
- <li>C语言</li> 
- <li>java</li> 
- <li>javaWeb</li> 
- <li>HTML/CSS</li> 
- <li>JavaScript</li> 
- <li>JQ</li> 
- <li>Node.JS</li> 
-</ul> 
-<p><strong>学习的状况用一句话概括：===没学。</strong></p> 
-<hr /> 
-<h2> <a id="开始" class="anchor" href="#%E5%BC%80%E5%A7%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>开始</h2> 
-<p>2017年6月9号开始用这个仓库进行JavaScript的学习<br /> 2017年6月10号仓库名由test更改为myjavascript<br /> 里面有我觉得重要的代码文件，也有各个代码的说明文件，以下是各个知识点的总目录。</p> 
-<blockquote> 
- <p>初衷是用来放置我觉得重要的代码文件，到了今时今日，已经用来放置全部文件了。那我就用这个仓库存放我学习的完整文件吧！！</p> 
-</blockquote> 
-<p align="right">——潘栋民</p> 
-<h1> <a id="javascript的各个知识点" class="anchor" href="#javascript%E7%9A%84%E5%90%84%E4%B8%AA%E7%9F%A5%E8%AF%86%E7%82%B9" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>JavaScript的各个知识点</h1> 
-<h2> <a id="三脚猫功夫" class="anchor" href="#%E4%B8%89%E8%84%9A%E7%8C%AB%E5%8A%9F%E5%A4%AB" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>三脚猫功夫</h2> 
-<h3> <a id="前言" class="anchor" href="#%E5%89%8D%E8%A8%80" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="markdown\.foreword.md.html">前言</a> </h3> 
-<h3> <a id="初级" class="anchor" href="#%E5%88%9D%E7%BA%A7" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>初级</h3> 
-<ul> 
- <li><a href="markdown\.intro.md.html">JavaScript简介</a></li> 
- <li><a href="markdown\.runjs.md.html">如何运行JavaScript</a></li> 
- <li> <a href=".onload.md.html">动态绑定事件与监听</a> <del><a href="https://allen151.github.io/myJavaScript/onload.html">示例1</a></del> </li> 
- <li><a href="markdown\.basis.md.html">基础1</a></li> 
- <li><a href="markdown\.basis2.md.html">变量/数据类型/操作符</a></li> 
- <li><a href="markdown\.basis3.md.html">语句/函数</a></li> 
- <li><a href="markdown\.variable.md.html">变量&amp;基本类型/引用类型</a></li> 
- <li><a href="markdown\.scope.md.html">执行环境及/作用域</a></li> 
- <li><a href="markdown\.garbage.md.html">垃圾收集</a></li> 
-</ul> 
-<h3> <a id="高级" class="anchor" href="#%E9%AB%98%E7%BA%A7" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>高级</h3> 
-<ul> 
- <li> <a href="markdown\.changepic.md.html">图片轮换</a> <del><a href="https://allen151.github.io/myJavaScript/changepic.html">示例2</a></del> </li> 
- <li> <a href="markdown\.regcheck.md.html">表单验证</a> <del><a href="https://allen151.github.io/myJavaScript/html/regcheck.html">示例3</a></del> </li> 
-</ul> 
-<h3> <a id="实战" class="anchor" href="#%E5%AE%9E%E6%88%98" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>实战</h3> 
-<h3> <a id="我的一些学习计划" class="anchor" href="#%E6%88%91%E7%9A%84%E4%B8%80%E4%BA%9B%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>我的一些学习计划</h3> 
-<h4> <a id="在github上使用hexo搭建博客" class="anchor" href="#%E5%9C%A8github%E4%B8%8A%E4%BD%BF%E7%94%A8hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><a href="markdown\.blog.md.html">在GitHub上使用Hexo搭建博客</a> </h4>
+<h2> <a id="标记清除" class="anchor" href="#%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>标记清除</h2> 
+<p>标记清除是javascript最常用的垃圾收集方式。当进行执行环境时，对执行环境中的所有变量标记为进入环境，逻辑上讲是不能清除标记为进入环境的变量的。离开环境后就标记为离开环境，垃圾收集机制就是清除这部分。不同的浏览器用不同的方法标记，不同浏览器的清除的间隔也不同。这些问题太复制了，看不懂……</p> 
+<h2> <a id="引用计数" class="anchor" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>引用计数</h2> 
+<p>引用计数方法不常用。用引用计数的方法来记录变量引用的次数，被引用就加1，断开引用就减1，直到引用次数为0就代码待清除。<br /> 这里有一个问题，如果有两个变量相互引用的话，那就永远成不了垃圾了，这是它的不好处，所以这种方式不好。<br /> 所以对不用的引用变量，我们最好手动地为其赋值为null来释放其引用，这叫——<strong>解除引用</strong>。</p> 
+<h2> <a id="性能问题" class="anchor" href="#%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>性能问题</h2> 
+<p>这里垃圾回收而引发的性能问题，IE浏览器就最显著，IE浏览器垃圾收集器根据内存的分配量来决定运行的，满足256个变量、4096个对象（数组/字面量/数组元素）或者64KB的字符串中任何一个临界值，就运行垃圾回收。如果一个脚本一直没有达到这个临界值，那就永远不回收，如果非垃圾变量一直有这个值就一直执行垃圾回收。结果性能就很差，IE7就重写了其垃圾回收例程。<br /> 触发垃圾回收：<br /> 在IE中，window.CollectGarbage()方法会立即执行收集。<br /> Opera7用window.opera.collect()方法也会启动垃圾收集例程。<br /> 但不建议这么干。</p> 
+<h2> <a id="管理内存" class="anchor" href="#%E7%AE%A1%E7%90%86%E5%86%85%E5%AD%98" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>管理内存</h2> 
+<p>使用具备垃圾收集机制语言编写程序时，开发人员一般不用操心内存管理。但是javascript还是有点特别的，主要问题是——<strong>分配给web浏览器的可用内存通常比分配给桌面应用程序的少</strong>。这么做是出于安全考虑，防止不好的javascript代码耗尽内存导致系统崩溃。内存的限制导致变量得到的内存少，还会影响调用栈以及在一个线程中能够同时执行的语句数量。<br /> 所以，确保占用最少内存可以让页面性能更好。优化性能最佳方式是用<strong>解除引用</strong>的方法，这一做法适用于大多数全局变量和全局对象的属性，局部的会在离开执行环境时自动解除引用了。<br /> 解除一个值的引用并不是说自动回收该值的内存了，只是让该值脱离执行环境，以便垃圾收集机制在下次运行时回收。</p> 
+<h2> <a id="总结" class="anchor" href="#%E6%80%BB%E7%BB%93" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>总结</h2> 
+<ol> 
+ <li>标记清除是最常用的垃圾收集策略，这种算法的思想是给当前不使用的值加上标记，然后再回收其内存。</li> 
+ <li>引用计数也是一种收集策略，这种算法的思想是跟踪记录所有被引用的次数。javascript引擎目前都不再使用这种算法，但是在IE中访问非原生javascript对象（如DOM元素）时，这种算法仍然可能会导致问题。</li> 
+ <li>当代码中存在循环引用现象时，“引用计数”算法就会导致问题。</li> 
+ <li>javascript开发人员应该怎么管理内存呢。</li> 
+ <li>离开作用域的值将被标记为可回收，因此在垃圾回收期间被删除。</li> 
+ <li>解除变量不仅有助于消除循环引用现象，而且对垃圾收集也有好处。为了确保有效地回收内存，应该及时解除不再使用的全局对象、全局对象属性以及循环引用变量的引用。</li> 
+</ol>
 </body>
 </html>

@@ -44,6 +44,7 @@
 - [语句/函数]  
 - [变量&基本类型/引用类型]  
 - [执行环境及/作用域]
+- [垃圾收集]
 
 
 ### 高级
@@ -72,6 +73,9 @@
 [语句/函数]: markdown/basis3.md  
 [变量&基本类型/引用类型]: markdown/variable.md
 [执行环境及/作用域]: markdown/scope.md
+[垃圾收集]: markdown/garbage.md
+
+
 
 
 [在GitHub上使用Hexo搭建博客]: markdown/blog.md
