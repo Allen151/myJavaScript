@@ -45,7 +45,7 @@
 - [变量&基本类型/引用类型]  
 - [执行环境及/作用域]
 - [垃圾收集]
-
+- [引用对象]
 
 ### 高级
 - [图片轮换] ~~[示例2]~~
@@ -74,7 +74,7 @@
 [变量&基本类型/引用类型]: markdown/variable.md
 [执行环境及/作用域]: markdown/scope.md
 [垃圾收集]: markdown/garbage.md
-
+[引用对象]: markdown/quote.md
 
 
 
