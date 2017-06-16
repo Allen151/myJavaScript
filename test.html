@@ -5,9 +5,16 @@
 </head>
 <body>
 <script type="text/javascript">
-	alert(person instanceof Object);
-	alert(colors instanceof Array);
-	alert(pattern instanceof RegExp);
+	function buildUrl(){
+		var qs = "?debug=true" ;
+
+		with(location){
+			var url = href + qs ;
+		}
+		return url ;
+	}
+	//file:///D:/IT/github/myJavaScipt/test.html?debug=true
+	alert(buildUrl()); 
 </script>
 </body>
 </html>

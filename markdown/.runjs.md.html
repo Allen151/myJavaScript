@@ -645,12 +645,12 @@ function setDocumentScrollTop(ypos)
 <ul> 
  <li>在HTML中使用JavaScript<br /> JS的代码是嵌入到HTML中被浏览器解析的。</li> 
  <li>Hello World! 
-  <div class="highlight highlight-text-html-basic">
-   <pre>&lt;<span class="pl-ent">body</span>&gt;
-&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span>&gt;<span class="pl-s1"></span>
-<span class="pl-s1">  <span class="pl-c1">window</span>.<span class="pl-c1">alert</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>Hello World!!<span class="pl-pds">&quot;</span></span>);</span>
-<span class="pl-s1"></span><span class="pl-s1">&lt;</span>/<span class="pl-ent">script</span>&gt;
-&lt;/<span class="pl-ent">body</span>&gt;</pre>
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-k">&lt;</span>body<span class="pl-k">&gt;</span>  
+<span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+  <span class="pl-c1">window</span>.<span class="pl-c1">alert</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>Hello World!!<span class="pl-pds">&quot;</span></span>);
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>body<span class="pl-k">&gt;</span></pre>
   </div> 在w3的JS手册的BOM里可以查找到alert()方法。这是JS代码嵌入到HTML中的一种方法。将JS代码放到&lt;script&gt;标签里面。&lt;script&gt;标签可以放在head或body标签里，放在body标签的最后更好些，因为html网页的加载是从上到下的，放在最后就不影响内容的显示。</li> 
  <li>JS代码直接写在HTML代码中 
   <div class="highlight highlight-text-html-basic">
@@ -671,7 +671,8 @@ function setDocumentScrollTop(ypos)
   </div> </li> 
 </ul> 
 <hr /> 
-<p>三种引入JS代码的方式已经介绍完了，这里按键调用JS代码还不是最好的方法，更好的方法是通过<a href="..\.onload.md.html">动态绑定事件</a>。后面还会多次提到。上面用到的<code>window.alert();</code>方法是通过弹窗口的方式显示消息，我们还可以通过<code>document.writer();</code>方法将信息写在浏览器上哦！<br /> <strong>总结：</strong></p> 
+<p>三种引入JS代码的方式已经介绍完了，这里按键调用JS代码还不是最好的方法，更好的方法是通过<a href="..\.onload.md.html">动态绑定事件</a>。后面还会多次提到。上面用到的<code>window.alert();</code>方法是通过弹窗口的方式显示消息，我们还可以通过<code>document.writer();</code>方法将信息写在浏览器上哦！</p> 
+<p><strong>总结：</strong></p> 
 <ul> 
  <li>将JS代码嵌入到html代码中运行</li> 
  <li>有三种嵌入方法<br /> 1.直接写在HTMl代码中<br /> 2.写在&lt;script&gt;标签里<br /> 3.写在单独的JS文件里</li> 

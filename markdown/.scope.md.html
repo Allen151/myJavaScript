@@ -649,16 +649,81 @@ function setDocumentScrollTop(ypos)
 </ul> 
 <hr /> 
 <h2> <a id="执行环境及作用域-1" class="anchor" href="#%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E5%8F%8A%E4%BD%9C%E7%94%A8%E5%9F%9F-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>执行环境及作用域</h2> 
+<h3> <a id="执行环境" class="anchor" href="#%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>执行环境</h3> 
 <blockquote> 
  <ul> 
-  <li>执行环境是JavaScript中最为重要的一个概念。执行环境定义了变量和函数可以访问的数据，每个执行环境都有一个与之关联的<strong>变量对象</strong>，环境中定义的所有变量和函数都保存在这个变量对象。我们无法访问这个对象，但是解析器在处理数据时在后台会使用它。</li> 
+  <li>执行环境是JavaScript中最为重要的一个概念。执行环境定义了变量和函数可以访问的数据，每个执行环境都有一个与之关联的<strong>变量对象</strong>，环境中定义的所有变量和函数都保存在这个变量对象中。我们无法访问这个对象，但是解析器在处理数据时在后台会使用它。</li> 
+  <li>全局执行环境是最外围的执行环境，在web浏览器中，全局执行环境被认为是window对象，因此所有的全局变量和函数都被认为是这个对象的属性和方法创建的。某个环境中的所有代码执行完毕后，该环境被销毁，保存在其中的变量和函数也随之销毁，全局变量和函数在浏览器被关闭时也销毁。</li> 
+  <li>每个函数都有自己的执行环境，当执行流进入一个函数时，函数所在的环境就被推入一个环境栈中。函数执行完后栈将其环境弹出，把控制权交还给其父执行环境。</li> 
+  <li>当代码在一个执行环境中执行时，会创建一个变量对象的<strong>作用链</strong>。作用链的作用是用来指定各个环境执行的顺序，作用链的最前端是正在执行的代码所在的变量对象。如果正在执行的是函数，就将其<strong>活动对象</strong>作为变量对象，最开始时只包含<code>arguments</code>对象（这个对象在全局环境中是不存在的）。这个环境执行完就推给其父环境，一直到全局执行环境，全局执行环境是作用链最后的一个对象。</li> 
+  <li>标识符解析是沿着作用链一级级地向上搜索的，一直往父环境寻找，直到找到，找不到就报错。<strong>这就是为什么不能使用子环境的标识符。</strong> </li> 
  </ul> 
 </blockquote> 
-<ul> 
- <li>全局执行环境是最外围的执行环境，在web浏览器中，全局执行环境被认为是window对象，因此所有的全局变量和函数都被认为是这个对象的属性和方法创建的。某个环境中的所有代码执行完毕后，该环境被销毁，保存在其中的变量和函数也随之销毁，全局变量和函数在浏览器被关闭时也销毁。</li> 
- <li>每个函数都有自己的执行环境，当执行流进入一个函数时，函数所在的环境就被推入一个环境栈中。函数执行完后栈将其环境弹出，把控制权交还给其父执行环境。</li> 
-</ul> 
+<hr /> 
+<p>概念就是这样，也比较好理解，看明白会很好理解下面的内容。</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span> ;<span class="pl-c"><span class="pl-c">//</span>全局变量</span>
+
+	<span class="pl-k">function</span> <span class="pl-en">changeColor</span>(){
+		<span class="pl-k">if</span>(color <span class="pl-k">===</span> <span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span>){<span class="pl-c"><span class="pl-c">//</span>使用全局变量</span>
+			color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>red<span class="pl-pds">&quot;</span></span> ;
+		}<span class="pl-k">else</span>{
+			color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span> ;
+		}
+	}
+
+	<span class="pl-en">changeColor</span>() ;<span class="pl-c"><span class="pl-c">//</span>调用方法</span>
+
+	<span class="pl-en">alert</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>现在的color是 :<span class="pl-pds">&quot;</span></span><span class="pl-k">+</span>color);<span class="pl-c"><span class="pl-c">//</span>red</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<p><code>changeColor()</code>方法的执行环境中有两个对象：一、<code>arguments</code>对象，二、全局环境的变量对象。我们可以在<code>changeColor()</code>方法内使用<code>color</code>变量，因为<code>color</code>变量在<code>changeColor()</code>方法的父环境中，在本环境找不到就追寻到父环境中找。</p> 
+<p>在父环境中就不能使用子环境的变量，在子环境中可以将父环境与子环境的变量相互使用，正如下面这个例子：</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span> ;
+
+	<span class="pl-k">function</span> <span class="pl-en">anotherColor</span>(){
+		<span class="pl-c"><span class="pl-c">//</span>这里可以访问color、anotherColor，但不能访问tempColor</span>
+		<span class="pl-k">var</span> anotherColor <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>red<span class="pl-pds">&quot;</span></span> ;
+
+		<span class="pl-k">function</span> <span class="pl-en">changeColor</span>(){
+			<span class="pl-c"><span class="pl-c">//</span>这里可以访问color、anotherColor、tempColor</span>
+			<span class="pl-k">var</span> tempColor <span class="pl-k">=</span> anotherColor ;
+			anotherColor <span class="pl-k">=</span> color ;
+			color <span class="pl-k">=</span> tempColor ;
+		}
+
+		<span class="pl-en">changeColor</span>();
+	}
+
+	<span class="pl-en">anotherColor</span>()
+	<span class="pl-en">alert</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>改变了color:<span class="pl-pds">&quot;</span></span><span class="pl-k">+</span>color);<span class="pl-c"><span class="pl-c">//</span>red</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<p>内部环境可以通过作用链访问外部环境的变量和函数，但外部环境不能访问内部环境的变量和函数。这些环境之间是线性的、有序的。每个环境都可以向上搜索作用域链，以查询变量和函数名。但是任何环境都不能通过向下搜索作用域链而进入另一个执行环境。<strong>函数的参数也被当作变量来对待，所以其访问规则也与执行环境中的变量相同。</strong></p> 
 <h2> <a id="延长作用域链" class="anchor" href="#%E5%BB%B6%E9%95%BF%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>延长作用域链</h2> 
+<p>把各个执行环境联接起来就叫作用域链，执行环境有两种——全局和局部（函数），但是有些情况是可以在函数内部增加一个变量对象，这种变量对象会在代码执行完后被移除，这种现象就是延长作用链。<br /> 在这两种情况下会发生作用链延长：</p> 
+<ul> 
+ <li>try-catch语句的catch块；<br /> catch语句会创建一个新的对象，用来存放被抛出的错误对象的声明。</li> 
+ <li>with语句。<br /> 会将指定的对象添加到作用域链中。 例子：</li> 
+</ul> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">function</span> <span class="pl-en">buildUrl</span>(){
+		<span class="pl-k">var</span> qs <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>?debug=true<span class="pl-pds">&quot;</span></span> ;
+
+		<span class="pl-k">with</span>(location){
+			<span class="pl-k">var</span> url <span class="pl-k">=</span> href <span class="pl-k">+</span> qs ;
+		}
+		<span class="pl-k">return</span> url ;
+	}
+	<span class="pl-c"><span class="pl-c">//</span>file:///D:/IT/github/myJavaScipt/test.html?debug=true</span>
+	<span class="pl-en">alert</span>(<span class="pl-en">buildUrl</span>()); 
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<p><code>with语句</code>接收的<code>location对象</code>，<code>with变量对象</code>中就包含了<code>location对象</code>的所有属性和方法的使用权，当使用变量<code>href</code>时，在最前端环境找不到就往上找，在<code>location</code>中找到了，实际上是<code>location.href变量</code>。在<code>with语句</code>内部定义的<code>url变量</code>竟然就成了函数执行环境的一部分，然后就可以用<code>return</code>将其作为函数的返回值了。</p> 
 <h2> <a id="没有块级作用域" class="anchor" href="#%E6%B2%A1%E6%9C%89%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>没有块级作用域</h2> 
 <h2> <a id="总结" class="anchor" href="#%E6%80%BB%E7%BB%93" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>总结</h2>
 </body>
