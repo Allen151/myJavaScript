@@ -85,7 +85,96 @@
 ```
 `with语句`接收的`location对象`，`with变量对象`中就包含了`location对象`的所有属性和方法的使用权，当使用变量`href`时，在最前端环境找不到就往上找，在`location`中找到了，实际上是`location.href变量`。在`with语句`内部定义的`url变量`竟然就成了函数执行环境的一部分，然后就可以用`return`将其作为函数的返回值了。
 ## 没有块级作用域  
+总是让人费解：javascript没有块级作用域。在其他类C的语言中，由花括号封闭的代码块都有自己的作用域，也就是javascript所说的执行环境。javascript搜索变量与函数以作用域链为根据。  
+例如：  
+```javascript
+<script type="text/javascript">
+	if(true){
+		var color = "blue" ;
+	}
+	alert(color);//blue
+</script>
+```
+这里的color是if语句里面的变量，~~如果是在C、C++或java语言中，`color`会在`if语句`执行完成后进行销毁。~~但是在javsscript中，`color`与`alert()`是在同一个执行环境中，所以可以输出`blue`。  
 
+对于有块级作用域的语言来说，~~`for语句`初始化变量的表达式所定义的变量，只会存在于循环的环境中~~。而对于javascript来说，由`for`创建的`变量i`即使在循环结束后，也依然会存在于循环外部的执行环境中。例如：  
+```javascript
+<script type="text/javascript">
+	for(var i=10; i<20; i++){
+		document.write("Hello"+"<br />");
+	}
+	alert(i);//20
+</script>
+```
+由于javascript没有块级作用域这一特点太特别了，容易困惑。其实我们也可以多加学习达到了解的。  
+- 声明变量  
+使用`var`声明变量会自动被添加到最接近的环境中，在函数内部，最接近的环境是函数的局部环境，在`with语句`中最接近的环境也是函数环境。如果不使用`var`声明变量，该变量会自动被添加到全局环境。如下：`sum`是局部变量，外部无法访问  
+```javascript
+<script type="text/javascript">
+	function add(num1, num2){
+		var sum = num1 + num2 ;
+		return sum ;
+	}
 
+	var result = add(10, 20);
+	alert(sum); //sum is not defined
+</script>
+```
+去掉`var`，函数执行完后，`sum`就添加到全局环境中,外部就可以继续访问`sum`了:    
+```javascript
+<script type="text/javascript">
+	function add(num1, num2){
+		sum = num1 + num2 ;
+		return sum ;
+	}
 
+	var result = add(10, 20);
+	alert(sum); //30
+</script>
+```
+在普通模式下，未声明变量直接赋值使用也是可以，但是这种做法不好，因为在严格模式下就会导致错误。所以，使用变量一定要声明。  
+- 查询标识符  
+当某个环境为了读取或写入而引用一个标识符时，必须通过搜索来确定该标识符实际代表什么。搜索过程从本执行环境开始向作用域链上端搜索，一直追溯到全局变量，如果一直都没找到就表明该标识符没声明。  
+```javascript
+<script type="text/javascript">
+	var color = "blue" ;
+
+	function getColor(){
+		return color ;
+	}
+
+	alert(getColor());  //blue
+</script>
+```
+先在`getColor()`函数执行环境中找`Color变量`，找不到了就到上级（全局执行环境）找。如果找到就停止，也就是说谁近用谁，如下面：  
+```javascript
+<script type="text/javascript">
+	var color = "blue" ;
+
+	function getColor(){
+		var color = "red" ;
+		return color ;
+	}
+
+	alert(getColor());  //red
+</script>
+```
+像这种情况，局部执行环境中已经找到了一个匹配的标识符，就不再往上找了，那我要用`color="blue"`;这个变量呢？用`window.color`调用：  
+```javascript
+<script type="text/javascript">
+	var color = "blue" ;
+
+	function getColor(){
+		var color = "red" ;
+		return window.color ;
+	}
+
+	alert(getColor());  //blue
+</script>
+```
+这种查询的好处是：访问局部应是更快。
+  
 ## 总结 
+1. javascript的执行环境串成了作用域链，根据这个链来实现代码执行的次序。  
+2. javascript有两个特别的延长作用域链。  
+3. javascript是没有块级作用域的，要分清楚它的执行环境内的对象实现作用域。

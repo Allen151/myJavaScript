@@ -5,16 +5,14 @@
 </head>
 <body>
 <script type="text/javascript">
-	function buildUrl(){
-		var qs = "?debug=true" ;
+	var color = "blue" ;
 
-		with(location){
-			var url = href + qs ;
-		}
-		return url ;
+	function getColor(){
+		var color = "red" ;
+		return window.color ;
 	}
-	//file:///D:/IT/github/myJavaScipt/test.html?debug=true
-	alert(buildUrl()); 
+
+	alert(getColor());  //blue
 </script>
 </body>
 </html>

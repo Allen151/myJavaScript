@@ -725,6 +725,99 @@ function setDocumentScrollTop(ypos)
 </div> 
 <p><code>with语句</code>接收的<code>location对象</code>，<code>with变量对象</code>中就包含了<code>location对象</code>的所有属性和方法的使用权，当使用变量<code>href</code>时，在最前端环境找不到就往上找，在<code>location</code>中找到了，实际上是<code>location.href变量</code>。在<code>with语句</code>内部定义的<code>url变量</code>竟然就成了函数执行环境的一部分，然后就可以用<code>return</code>将其作为函数的返回值了。</p> 
 <h2> <a id="没有块级作用域" class="anchor" href="#%E6%B2%A1%E6%9C%89%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>没有块级作用域</h2> 
-<h2> <a id="总结" class="anchor" href="#%E6%80%BB%E7%BB%93" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>总结</h2>
+<p>总是让人费解：javascript没有块级作用域。在其他类C的语言中，由花括号封闭的代码块都有自己的作用域，也就是javascript所说的执行环境。javascript搜索变量与函数以作用域链为根据。<br /> 例如：</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">if</span>(<span class="pl-c1">true</span>){
+		<span class="pl-k">var</span> color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span> ;
+	}
+	<span class="pl-en">alert</span>(color);<span class="pl-c"><span class="pl-c">//</span>blue</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<p>这里的color是if语句里面的变量，~~如果是在C、C++或java语言中，<code>color</code>会在<code>if语句</code>执行完成后进行销毁。~~但是在javsscript中，<code>color</code>与<code>alert()</code>是在同一个执行环境中，所以可以输出<code>blue</code>。</p> 
+<p>对于有块级作用域的语言来说，<del><code>for语句</code>初始化变量的表达式所定义的变量，只会存在于循环的环境中</del>。而对于javascript来说，由<code>for</code>创建的<code>变量i</code>即使在循环结束后，也依然会存在于循环外部的执行环境中。例如：</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">for</span>(<span class="pl-k">var</span> i<span class="pl-k">=</span><span class="pl-c1">10</span>; i<span class="pl-k">&lt;</span><span class="pl-c1">20</span>; i<span class="pl-k">++</span>){
+		<span class="pl-c1">document</span>.<span class="pl-c1">write</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>Hello<span class="pl-pds">&quot;</span></span><span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">&quot;</span>&lt;br /&gt;<span class="pl-pds">&quot;</span></span>);
+	}
+	<span class="pl-en">alert</span>(i);<span class="pl-c"><span class="pl-c">//</span>20</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<p>由于javascript没有块级作用域这一特点太特别了，容易困惑。其实我们也可以多加学习达到了解的。</p> 
+<ul> 
+ <li>声明变量<br /> 使用<code>var</code>声明变量会自动被添加到最接近的环境中，在函数内部，最接近的环境是函数的局部环境，在<code>with语句</code>中最接近的环境也是函数环境。如果不使用<code>var</code>声明变量，该变量会自动被添加到全局环境。如下：<code>sum</code>是局部变量，外部无法访问</li> 
+</ul> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">function</span> <span class="pl-en">add</span>(<span class="pl-smi">num1</span>, <span class="pl-smi">num2</span>){
+		<span class="pl-k">var</span> sum <span class="pl-k">=</span> num1 <span class="pl-k">+</span> num2 ;
+		<span class="pl-k">return</span> sum ;
+	}
+
+	<span class="pl-k">var</span> result <span class="pl-k">=</span> <span class="pl-en">add</span>(<span class="pl-c1">10</span>, <span class="pl-c1">20</span>);
+	<span class="pl-en">alert</span>(sum); <span class="pl-c"><span class="pl-c">//</span>sum is not defined</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<p>去掉<code>var</code>，函数执行完后，<code>sum</code>就添加到全局环境中,外部就可以继续访问<code>sum</code>了:</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">function</span> <span class="pl-en">add</span>(<span class="pl-smi">num1</span>, <span class="pl-smi">num2</span>){
+		sum <span class="pl-k">=</span> num1 <span class="pl-k">+</span> num2 ;
+		<span class="pl-k">return</span> sum ;
+	}
+
+	<span class="pl-k">var</span> result <span class="pl-k">=</span> <span class="pl-en">add</span>(<span class="pl-c1">10</span>, <span class="pl-c1">20</span>);
+	<span class="pl-en">alert</span>(sum); <span class="pl-c"><span class="pl-c">//</span>30</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<p>在普通模式下，未声明变量直接赋值使用也是可以，但是这种做法不好，因为在严格模式下就会导致错误。所以，使用变量一定要声明。</p> 
+<ul> 
+ <li>查询标识符<br /> 当某个环境为了读取或写入而引用一个标识符时，必须通过搜索来确定该标识符实际代表什么。搜索过程从本执行环境开始向作用域链上端搜索，一直追溯到全局变量，如果一直都没找到就表明该标识符没声明。</li> 
+</ul> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span> ;
+
+	<span class="pl-k">function</span> <span class="pl-en">getColor</span>(){
+		<span class="pl-k">return</span> color ;
+	}
+
+	<span class="pl-en">alert</span>(<span class="pl-en">getColor</span>());  <span class="pl-c"><span class="pl-c">//</span>blue</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<p>先在<code>getColor()</code>函数执行环境中找<code>Color变量</code>，找不到了就到上级（全局执行环境）找。如果找到就停止，也就是说谁近用谁，如下面：</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span> ;
+
+	<span class="pl-k">function</span> <span class="pl-en">getColor</span>(){
+		<span class="pl-k">var</span> color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>red<span class="pl-pds">&quot;</span></span> ;
+		<span class="pl-k">return</span> color ;
+	}
+
+	<span class="pl-en">alert</span>(<span class="pl-en">getColor</span>());  <span class="pl-c"><span class="pl-c">//</span>red</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<p>像这种情况，局部执行环境中已经找到了一个匹配的标识符，就不再往上找了，那我要用<code>color=&quot;blue&quot;</code>;这个变量呢？用<code>window.color</code>调用：</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span> ;
+
+	<span class="pl-k">function</span> <span class="pl-en">getColor</span>(){
+		<span class="pl-k">var</span> color <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>red<span class="pl-pds">&quot;</span></span> ;
+		<span class="pl-k">return</span> <span class="pl-c1">window</span>.<span class="pl-c1">color</span> ;
+	}
+
+	<span class="pl-en">alert</span>(<span class="pl-en">getColor</span>());  <span class="pl-c"><span class="pl-c">//</span>blue</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<p>这种查询的好处是：访问局部应是更快。</p> 
+<h2> <a id="总结" class="anchor" href="#%E6%80%BB%E7%BB%93" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>总结</h2> 
+<ol> 
+ <li>javascript的执行环境串成了作用域链，根据这个链来实现代码执行的次序。</li> 
+ <li>javascript有两个特别的延长作用域链。</li> 
+ <li>javascript是没有块级作用域的，要分清楚它的执行环境内的对象实现作用域。</li> 
+</ol>
 </body>
 </html>
