@@ -650,9 +650,146 @@ function setDocumentScrollTop(ypos)
  <li>检测类型</li> 
 </ul> 
 <h2> <a id="基本类型和引用类型的值" class="anchor" href="#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%80%BC" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>基本类型和引用类型的值</h2> 
+<p>ECMAScript的变量存放的数据的数据类型有两种，其中一种是基本类型，另一种是引用类型。</p> 
+<ul> 
+ <li>基本类型<br /> Undefined、Null、Boolean、Number和String这五种是基本数据类型，将一个值赋给变量时，解析器必须确定这个值是基本类型还是引用类型，如果是基本类型就是按值访问——可以操作保存在变量中的实际的值。</li> 
+ <li>引用类型<br /> 对象数据类型是引用类型，引用类型的值是保存在对象中的。<del>C及类C语言是可以直接访问内存中的位置，也就是说能操作对象的内存空间</del>。但JavaScript不能这么干，它只能通过操作对象的引用访问，而不是操作实际的对象。所以，引用类型的值是按引用访问的。</li> 
+</ul> 
+<p><strong>注意</strong>：<br /> 很多语言中String数据类型是以对象的形式来表示的，因此被认为是引用类型。<strong>但是在ECMAScript中，String数据类型不是引用类型。</strong></p> 
 <h2> <a id="动态的属性" class="anchor" href="#%E5%8A%A8%E6%80%81%E7%9A%84%E5%B1%9E%E6%80%A7" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>动态的属性</h2> 
+<p>定义基本类型数值和引用类型数据类似，但是操作就有很大的不同了。</p> 
+<ul> 
+ <li>引用类型的值我们可以动态地添加属性与方法，例：</li> 
+</ul> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> person <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Object</span>() ; <span class="pl-c"><span class="pl-c">//</span>定义一个对象  </span>
+	<span class="pl-smi">person</span>.<span class="pl-c1">name</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Nicholas<span class="pl-pds">&quot;</span></span> ;<span class="pl-c"><span class="pl-c">//</span>动态地添加对象的属性  </span>
+	<span class="pl-en">alert</span>(<span class="pl-smi">person</span>.<span class="pl-c1">name</span>);			<span class="pl-c"><span class="pl-c">//</span>Nicholas</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<p>上面的代码，先创建一个对象存放于<code>person</code>变量中，动态地添加<code>person</code>对象的<code>name</code>属性值为<code>Nicholas</code>，最后用<code>alert(person.name);</code>输出动态添加的值。如果对象不被销毁，这个属性将一直存在。</p> 
+<ul> 
+ <li>基本类型就不能动态添加属性，虽然不会报错，但是无效，如下：</li> 
+</ul> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> name <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Nicholas<span class="pl-pds">&quot;</span></span> ;<span class="pl-c"><span class="pl-c">//</span>基本类型值</span>
+	<span class="pl-smi">name</span>.<span class="pl-smi">age</span> <span class="pl-k">=</span> <span class="pl-c1">20</span> ;  <span class="pl-c"><span class="pl-c">//</span>动态添加属性</span>
+	<span class="pl-en">alert</span>(<span class="pl-smi">name</span>.<span class="pl-smi">age</span>);  <span class="pl-c"><span class="pl-c">//</span>undefined</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<p>引用类型值可以动态添加属性，基本类型值不可以动态添加属性。</p> 
 <h2> <a id="复制变量" class="anchor" href="#%E5%A4%8D%E5%88%B6%E5%8F%98%E9%87%8F" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>复制变量</h2> 
+<p>从一个变量向另一个变量复制值的时候，基本类型的值和引用类型的值也不同。</p> 
+<ul> 
+ <li> <p>基本类型<br /> 如果用一个变量向另一个变量赋值，会先将第一个变量的值复制多一份，把副本赋值给第二个变量，两个变量的值相互独立，互不影响。如：</p> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+  <span class="pl-k">var</span> num1 <span class="pl-k">=</span> <span class="pl-c1">2</span> ;
+  <span class="pl-k">var</span> num2 <span class="pl-k">=</span> num1 ; 
+  num2 <span class="pl-k">=</span> <span class="pl-c1">10</span> ;  <span class="pl-c"><span class="pl-c">//</span>改变num2</span>
+  <span class="pl-en">alert</span>(num1);<span class="pl-c"><span class="pl-c">//</span>num1的值不变</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+  </div> </li> 
+ <li> <p>引用类型<br /> 当一个引用类型的变量向另一个变量赋值的时候，也是复制一份值放到另一个变量，不同的是这一份值是一个指针，这两个指针指向同一个放在堆内存中的对象。即两个变量两个指针一个对象，所以改变任何一个变量的对象的值，另一个变量的值也改变。</p> 
+  <div class="highlight highlight-source-js">
+   <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+  <span class="pl-k">var</span> person1 <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Object</span>() ;
+  <span class="pl-k">var</span> person2 <span class="pl-k">=</span> person1 ;
+  <span class="pl-smi">person2</span>.<span class="pl-c1">name</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Nicholas<span class="pl-pds">&quot;</span></span> ; <span class="pl-c"><span class="pl-c">//</span>第二个变量增加name属性</span>
+  <span class="pl-en">alert</span>(<span class="pl-smi">person1</span>.<span class="pl-c1">name</span>);  <span class="pl-c"><span class="pl-c">//</span>第一个变量也有name属性了</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+  </div> </li> 
+</ul> 
 <h2> <a id="传递参数" class="anchor" href="#%E4%BC%A0%E9%80%92%E5%8F%82%E6%95%B0" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>传递参数</h2> 
-<h2> <a id="检测类型" class="anchor" href="#%E6%A3%80%E6%B5%8B%E7%B1%BB%E5%9E%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>检测类型</h2>
+<p>ECMAScript中所有函数的参数都是按值传递的。基本类型的参数传递比较好理解，跟两个变量赋值一样，把值复制出来一个副本传递给函数。而引用类型参数的传递跟引用类型的变量的复制一样，但是不好理解。访问变量有按值访问和按引用访问两种，而参数只能按值传递。</p> 
+<ul> 
+ <li>基本类型的参数传递<br /> 把全局变量<code>count</code>的值复制一个副本<code>20</code>赋给<code>num</code>，之后<code>num</code>的值跟<code>count</code>的值互不影响。<code>count</code>与<code>num</code>仅仅是有相同的值<code>20</code>，相互之间再也没有什么多余的关系了。假如是按引用传递，那<code>num</code>的值加<code>10</code>的时候<code>count</code>的值也应该加<code>10</code>。</li> 
+</ul> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">function</span> <span class="pl-en">addTen</span>(<span class="pl-smi">num</span>){
+		num <span class="pl-k">+=</span> <span class="pl-c1">10</span> ;
+		<span class="pl-k">return</span> num ;
+	}
+	<span class="pl-k">var</span> count <span class="pl-k">=</span> <span class="pl-c1">20</span> ;
+	<span class="pl-k">var</span> result <span class="pl-k">=</span> <span class="pl-en">addTen</span>(count) ;
+	<span class="pl-en">alert</span>(count);  <span class="pl-c"><span class="pl-c">//</span>20</span>
+	<span class="pl-en">alert</span>(result);  <span class="pl-c"><span class="pl-c">//</span>30</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<ul> 
+ <li>引用类型的参数传递<br /> 引用类型的参数传递时，是把<code>person</code>的指针复制一个副本，把副本的值传递给函数的参数<code>obj</code>，这就叫<strong>按值传递</strong>。在函数内部增加<code>obj</code>对象的<code>name</code>属性时，是通过这个指针的值来<strong>按引用访问</strong>的，两个不同的指针指向同一个对象，按引用访问对象最终只能<code>person.name = &quot;Nicholas&quot;</code>。</li> 
+</ul> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">function</span> <span class="pl-en">setName</span>(<span class="pl-smi">obj</span>){
+		<span class="pl-smi">obj</span>.<span class="pl-c1">name</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Nicholas<span class="pl-pds">&quot;</span></span> ;<span class="pl-c"><span class="pl-c">//</span>增加局部对象的name属性</span>
+	}
+
+	<span class="pl-k">var</span> person <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Object</span>();<span class="pl-c"><span class="pl-c">//</span>全局对象</span>
+	<span class="pl-en">setName</span>(person);<span class="pl-c"><span class="pl-c">//</span>传递引用类型参数</span>
+	<span class="pl-en">alert</span>(<span class="pl-smi">person</span>.<span class="pl-c1">name</span>);<span class="pl-c"><span class="pl-c">//</span>全局的对象也改变</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<p>然后就造成这样一种现象，在函数内部修改<code>obj.name = &quot;Nicholas&quot; ;</code>，函数外部<code>person.name</code>也有所反映，<del>这是按引用传递的效果</del>。原因是<code>person</code>与<code>obj</code>指向的堆内存中的对象只有唯一的一个，而且是全局对象。然后有很多开发人员错误地认为：**<del>在局部作用域修改的对象在全局作用域中反映出来，这就说明参数是按引用传递的。</del>**我们再看一个例子：</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">function</span> <span class="pl-en">setName</span>(<span class="pl-smi">obj</span>){
+		<span class="pl-smi">obj</span>.<span class="pl-c1">name</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Nicholas<span class="pl-pds">&quot;</span></span> ;<span class="pl-c"><span class="pl-c">//</span>增加局部对象的name属性</span>
+		obj <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Object</span>() ;  <span class="pl-c"><span class="pl-c">//</span>重新定义一个对象</span>
+		<span class="pl-smi">obj</span>.<span class="pl-c1">name</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Tony<span class="pl-pds">&quot;</span></span> ;		<span class="pl-c"><span class="pl-c">//</span>为对象添加属性</span>
+	}
+
+	<span class="pl-k">var</span> person <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Object</span>();<span class="pl-c"><span class="pl-c">//</span>全局对象</span>
+	<span class="pl-en">setName</span>(person);<span class="pl-c"><span class="pl-c">//</span>传递引用类型参数</span>
+	<span class="pl-en">alert</span>(<span class="pl-smi">person</span>.<span class="pl-c1">name</span>);<span class="pl-c"><span class="pl-c">//</span>Nicholas</span>
+	<span class="pl-c"><span class="pl-c">//</span>找不到obj对象，局部对象在函数执行完就被销毁</span>
+	<span class="pl-en">alert</span>(<span class="pl-smi">obj</span>.<span class="pl-c1">name</span>);
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<p><code>obj.name = &quot;Nicholas&quot; ;</code>对旧对象添加属性，<code>obj = new Object() ;</code>定义新的对象，<code>obj.name = &quot;Tony&quot; ;</code>新的对象的属性。<code>alert(person.name);</code>最后输出查看<code>person</code>对象是新属性还是旧的属性。<strong><del>如果是按引用传递参数</del></strong>:<code>obj</code>定义新对象的时候，<code>person</code>也应该改变为指向新对象，因为引用传递参数意思是局部变量总能反映到全局变量中。而最后<code>alert(person.name);</code>是<code>Nicholas</code>说明函数内部修改了参数的值，但原始的引用没有改变，这是按值传递参数。实际上重新定义<code>obj</code>对象那一刻起，<code>obj</code>对象就是局部对象了，局部对象在函数执行完后立即被销毁，后面再输出就找不到对象了。</p> 
+<h2> <a id="检测类型" class="anchor" href="#%E6%A3%80%E6%B5%8B%E7%B1%BB%E5%9E%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>检测类型</h2> 
+<p>数据类型有两种，基本类型和引用类型，那么我们检测的时个也是用两种方法的。</p> 
+<ul> 
+ <li>基本类型<br /> <code>typeof</code>操作符是确定一个基本类型变量的最好工具。用来判断对象就不好用了。</li> 
+</ul> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> s <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>Nicholas<span class="pl-pds">&quot;</span></span> ;
+	<span class="pl-k">var</span> b <span class="pl-k">=</span> <span class="pl-c1">true</span> ;
+	<span class="pl-k">var</span> i <span class="pl-k">=</span> <span class="pl-c1">22</span> ;
+	<span class="pl-k">var</span> u ;
+	<span class="pl-k">var</span> n <span class="pl-k">=</span> <span class="pl-c1">null</span> ;
+	<span class="pl-k">var</span> o <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Object</span>();
+
+	<span class="pl-en">alert</span>(<span class="pl-k">typeof</span> s); <span class="pl-c"><span class="pl-c">//</span>String </span>
+	<span class="pl-en">alert</span>(<span class="pl-k">typeof</span> b); <span class="pl-c"><span class="pl-c">//</span>boolean</span>
+	<span class="pl-en">alert</span>(<span class="pl-k">typeof</span> i); <span class="pl-c"><span class="pl-c">//</span>number</span>
+	<span class="pl-en">alert</span>(<span class="pl-k">typeof</span> u); <span class="pl-c"><span class="pl-c">//</span>undefined</span>
+	<span class="pl-en">alert</span>(<span class="pl-k">typeof</span> n); <span class="pl-c"><span class="pl-c">//</span>object</span>
+	<span class="pl-en">alert</span>(<span class="pl-k">typeof</span> o); <span class="pl-c"><span class="pl-c">//</span>object</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<ul> 
+ <li>引用类型<br /> ECMAScript提供的<code>instanceof</code>操作符能判断给定的对象与判断的对象类型是否一至。如果一至返回<code>true</code>。使用方法如下：</li> 
+</ul> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-en">alert</span>(person <span class="pl-k">instanceof</span> <span class="pl-c1">Object</span>);
+	<span class="pl-en">alert</span>(colors <span class="pl-k">instanceof</span> <span class="pl-c1">Array</span>);
+	<span class="pl-en">alert</span>(pattern <span class="pl-k">instanceof</span> <span class="pl-c1">RegExp</span>);
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<p>所有的引用类型都是<code>Object</code>的实例，所以如果用<code>instanceof</code>检测一个引用类型和<code>Object</code>构造函数时，始终返回<code>true</code>。如果用来<code>instanceof</code>检测基本类型，始终返回<code>false</code>，因为基本类型不是对象。</p> 
+<h2> <a id="总结" class="anchor" href="#%E6%80%BB%E7%BB%93" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>总结</h2> 
+<ol> 
+ <li>ECMAScript有两种类型的值。</li> 
+ <li>引用类型能够动态添加属性。</li> 
+ <li>两种类型复制变量的方式不同。</li> 
+ <li>参数只能是按值传递，访问可以是按值访问和按引用访问。</li> 
+ <li>两种类型的变量分别用不同的操作符还检测。</li> 
+</ol>
 </body>
 </html>
