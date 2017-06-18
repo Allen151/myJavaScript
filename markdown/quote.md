@@ -111,6 +111,44 @@ javascript提供了很多原生引用类型，如目录所示的那些，以便�
 在对象里的属性名是以字符串的形式存在的，所以属性名是可以用关键字，保留字和非数字非字母的非法字符串来表示的，但是这种命名在用点表示法来访问就会报错，用方括号来访问就不会有问题，这是方括号存在的意义。  
 **除非必须用方括号访问，否则我们都是使用点表示法访问的。这样符合大家的习惯和美观。**  
 ## Array类型
+javascript中的数组是第二常用的引用类型了，javascript中的数组与其他语言的数组有两个比较大的区别，一是ECAMScript里的数组每一项可以保存任何类型的数据，也就是说第一项是字符串，第二项可以是数字，第三项可以是对象，也可以是数组，以此类推。二是ECAMScript中的数组的长度可以动态调整，即可以随着数据的添加自动增长以容纳新的数据。  
+创建数组的方式也是有两种。  
+- 使用Array构造函数  
+```javascript
+<script type="text/javascript">
+	var colors = new Array() ;
+</script> 
+```
+如果预先知道数组的长度也是可以给数组设定长度，但是不会影响后面数组要动态调整。而设定的这个值会自动成为该值的`length`属性。  
+```javascript
+<script type="text/javascript">
+	var colors = new Array(20) ;
+	alert(colors.length);  //20
+</script> 
+```
+也可以在声明数组的同时，通过构造函数给数组初始化n项值，如下所示：  
+```javascript
+<script type="text/javascript">
+	var colors = new Array("red", "blue", "green") ;
+</script> 
+```
+省略`new`关键字也是可以的：
+```javascript
+<script type="text/javascript">
+	var colors = Array(20) ;
+	alert(colors.length);  //20
+</script> 
+```
+- 数组字面量表示法  
+```javascript
+<script type="text/javascript">
+	var colors = ["red", "blue", "green"] ;
+	alert(colors[1]);//blue
+</script> 
+```
+在使用字面量表示法创建数组时，也不会调用`Array`构造函数。
+
+
 ## Date类型  
 ## RegExp类型 
 ## Function类型
