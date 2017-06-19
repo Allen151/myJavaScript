@@ -10,18 +10,25 @@ var deleteTr = function(obj){
 	tbody.removeChild(tr);  
 }
 
-//实现添加的方法
+//实现添加的方法,
+//比较完美的方法
+var addTr = function(){
+	var newTr = document.getElementById("oneTr").cloneNode(true);//将最后一行复制 
+	document.getElementById("mesTable").appendChild(newTr);//粘贴到表格的最后
+}
+
+
+
+/*一种方法
 var addTr = function(){
 	var trNode = document.createElement("tr");
 	var tdNode = document.createElement("td");
 	var textNode = document.createTextNode("待填");
 	tdNode.appendChild(textNode);
 	trNode.appendChild(tdNode);
-	trNode.appendChild(tdNode);
-	trNode.appendChild(tdNode);
 	document.getElementById("mesTable").appendChild(trNode);
 }
-
+*/
 window.onload = function(){
 
 	//变色,获取全部标签，循环遍历各行，绑定事件
