@@ -639,6 +639,32 @@ function setDocumentScrollTop(ypos)
 
 </head>
 <body class="markdown-body">
-<h1> <a id="下拉框事件" class="anchor" href="#%E4%B8%8B%E6%8B%89%E6%A1%86%E4%BA%8B%E4%BB%B6" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>下拉框事件</h1>
+<h1> <a id="下拉框事件" class="anchor" href="#%E4%B8%8B%E6%8B%89%E6%A1%86%E4%BA%8B%E4%BB%B6" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>下拉框事件</h1> 
+<p>下拉框有个事件，选择其中一项触动<code>change</code>。我们创建一个下拉框。</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>form method<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>post<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+选择你的城市：
+	<span class="pl-k">&lt;</span>select id<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>city<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+		<span class="pl-k">&lt;</span>option value<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>BJ-北京<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>北京<span class="pl-k">&lt;</span><span class="pl-k">/</span>option<span class="pl-k">&gt;</span>
+		<span class="pl-k">&lt;</span>option value<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>NJ-南京<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>南京<span class="pl-k">&lt;</span><span class="pl-k">/</span>option<span class="pl-k">&gt;</span>
+		<span class="pl-k">&lt;</span>option value<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>TJ-天津<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>天津<span class="pl-k">&lt;</span><span class="pl-k">/</span>option<span class="pl-k">&gt;</span>
+		<span class="pl-k">&lt;</span>option value<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>MM-茂名<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>茂名<span class="pl-k">&lt;</span><span class="pl-k">/</span>option<span class="pl-k">&gt;</span>
+		<span class="pl-k">&lt;</span>option value<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>GZ-广州<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>广州<span class="pl-k">&lt;</span><span class="pl-k">/</span>option<span class="pl-k">&gt;</span>
+		<span class="pl-k">&lt;</span>option value<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>ZZ-湛江<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>湛江<span class="pl-k">&lt;</span><span class="pl-k">/</span>option<span class="pl-k">&gt;</span>
+	<span class="pl-k">&lt;</span><span class="pl-k">/</span>select<span class="pl-k">&gt;</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>form<span class="pl-k">&gt;</span></pre>
+</div> 
+<p>通过动态绑定事件，得到<code>select</code>下拉框对象，对对对象进行监听，如果有<code>change</code>就输出信息。</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-c1">window</span>.<span class="pl-en">onload</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(){
+		<span class="pl-k">var</span> myCity <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>city<span class="pl-pds">&quot;</span></span>);
+		<span class="pl-smi">myCity</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>change<span class="pl-pds">&quot;</span></span>,<span class="pl-k">function</span>(){
+			<span class="pl-en">alert</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>你的城市：<span class="pl-pds">&quot;</span></span><span class="pl-k">+</span><span class="pl-c1">this</span>.<span class="pl-c1">value</span>);
+		},<span class="pl-c1">false</span>);	
+	}
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<p>可以在<a href="http://www.runoob.com">菜鸟教程</a>上查询要用的方法，熟练查询方法很重要。</p>
 </body>
 </html>

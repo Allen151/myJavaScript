@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>D:\IT\github\myJavaScipt\markdown\.quote.md.html</title>
+<title>D:\IT\github\myJavaScript\markdown\.quote.md.html</title>
 
 
 <style type="text/css">
@@ -748,7 +748,346 @@ function setDocumentScrollTop(ypos)
 </div> 
 <p>这么干的好处是什么呢？属性名为<code>first name</code>，中间有个空字符，这是非法命名，用点方法来访问就会报错，但是用方括号的方法访问完全没问题。<br /> 在对象里的属性名是以字符串的形式存在的，所以属性名是可以用关键字，保留字和非数字非字母的非法字符串来表示的，但是这种命名在用点表示法来访问就会报错，用方括号来访问就不会有问题，这是方括号存在的意义。<br /> <strong>除非必须用方括号访问，否则我们都是使用点表示法访问的。这样符合大家的习惯和美观。</strong></p> 
 <h2> <a id="array类型" class="anchor" href="#array%E7%B1%BB%E5%9E%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Array类型</h2> 
+<p>javascript中的数组是第二常用的引用类型了，javascript中的数组与其他语言的数组有两个比较大的区别，一是ECAMScript里的数组每一项可以保存任何类型的数据，也就是说第一项是字符串，第二项可以是数字，第三项可以是对象，也可以是数组，以此类推。二是ECAMScript中的数组的长度可以动态调整，即可以随着数据的添加自动增长以容纳新的数据。<br /> 创建数组的方式也是有两种。</p> 
+<ul> 
+ <li>使用Array构造函数</li> 
+</ul> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> colors <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Array</span>() ;
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<p>如果预先知道数组的长度也是可以给数组设定长度，但是不会影响后面数组要动态调整。而设定的这个值会自动成为该值的<code>length</code>属性。</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> colors <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Array</span>(<span class="pl-c1">20</span>) ;
+	<span class="pl-en">alert</span>(<span class="pl-smi">colors</span>.<span class="pl-c1">length</span>);  <span class="pl-c"><span class="pl-c">//</span>20</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<p>也可以在声明数组的同时，通过构造函数给数组初始化n项值，如下所示：</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> colors <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Array</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>red<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>green<span class="pl-pds">&quot;</span></span>) ;
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<p>省略<code>new</code>关键字也是可以的：</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> colors <span class="pl-k">=</span> <span class="pl-c1">Array</span>(<span class="pl-c1">20</span>) ;
+	<span class="pl-en">alert</span>(<span class="pl-smi">colors</span>.<span class="pl-c1">length</span>);  <span class="pl-c"><span class="pl-c">//</span>20</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<ul> 
+ <li>数组字面量表示法</li> 
+</ul> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> colors <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">&quot;</span>red<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>green<span class="pl-pds">&quot;</span></span>] ;
+	<span class="pl-en">alert</span>(colors[<span class="pl-c1">1</span>]);<span class="pl-c"><span class="pl-c">//</span>blue</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<p>在使用字面量表示法创建数组时，也不会调用<code>Array</code>构造函数。<br /> 读取和设置数组的方法是使用方括号并提供从0开始的数字索引。跳的值将自动赋值为<code>undefined</code>，<code>lenght</code>属性总是返回一个0或大于0的数值。如：</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> colors <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">&quot;</span>red<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>green<span class="pl-pds">&quot;</span></span>] ;<span class="pl-c"><span class="pl-c">//</span>含三项值的数组</span>
+	<span class="pl-en">alert</span>(colors[<span class="pl-c1">1</span>]);  <span class="pl-c"><span class="pl-c">//</span>输出第2项数组  blue</span>
+	colors[<span class="pl-c1">2</span>] <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>black<span class="pl-pds">&quot;</span></span> ;<span class="pl-c"><span class="pl-c">//</span>将第三项数组的数值改为“black”</span>
+	colors[<span class="pl-c1">5</span>] <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>brown<span class="pl-pds">&quot;</span></span> ;<span class="pl-c"><span class="pl-c">//</span>动态添加数组项目数</span>
+	<span class="pl-k">for</span>(<span class="pl-k">var</span> i<span class="pl-k">=</span><span class="pl-c1">0</span>; i<span class="pl-k">&lt;</span><span class="pl-smi">colors</span>.<span class="pl-c1">length</span>; i<span class="pl-k">++</span>){
+		<span class="pl-c1">document</span>.<span class="pl-c1">write</span>(colors[i]<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">&quot;</span>&lt;br <span class="pl-cce">\&gt;</span><span class="pl-pds">&quot;</span></span>) ;<span class="pl-c"><span class="pl-c">//</span>用循环输出各项</span>
+	}
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<p><code>length</code>属性比较有意思，影响力很大，可以通过设置其值来剪短数组的长度：</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> colors <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">&quot;</span>red<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>green<span class="pl-pds">&quot;</span></span>] ;<span class="pl-c"><span class="pl-c">//</span>含三项值的数组</span>
+	<span class="pl-smi">colors</span>.<span class="pl-c1">length</span> <span class="pl-k">=</span> <span class="pl-c1">1</span> ;<span class="pl-c"><span class="pl-c">//</span>设置colors数组的长度为1，多余的两项被剪掉了</span>
+	<span class="pl-en">alert</span>(colors[<span class="pl-c1">1</span>]);  <span class="pl-c"><span class="pl-c">//</span>第二项没值了，undefined</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<p>如果将<code>length</code>值设置得比原来的大，则用<code>undefined</code>填满多出来的项。</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> colors <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">&quot;</span>red<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>green<span class="pl-pds">&quot;</span></span>] ;<span class="pl-c"><span class="pl-c">//</span>含三项值的数组</span>
+	<span class="pl-smi">colors</span>.<span class="pl-c1">length</span> <span class="pl-k">=</span> <span class="pl-c1">5</span> ;<span class="pl-c"><span class="pl-c">//</span>增加两项  </span>
+	<span class="pl-k">for</span>(<span class="pl-k">var</span> i<span class="pl-k">=</span><span class="pl-c1">0</span>; i<span class="pl-k">&lt;</span><span class="pl-smi">colors</span>.<span class="pl-c1">length</span>; i<span class="pl-k">++</span>){
+		<span class="pl-c1">document</span>.<span class="pl-c1">write</span>(colors[i]<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">&quot;</span>&lt;br /&gt;<span class="pl-pds">&quot;</span></span>) ;
+		<span class="pl-c">/*</span>
+<span class="pl-c">		输出结果：</span>
+<span class="pl-c">			red</span>
+<span class="pl-c">			blue</span>
+<span class="pl-c">			green</span>
+<span class="pl-c">			undefined</span>
+<span class="pl-c">			undefined</span>
+<span class="pl-c">		 */</span>
+	}
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<p>利用<code>length</code>属性也可以向最后面添加数组的项：</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> colors <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">&quot;</span>red<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>green<span class="pl-pds">&quot;</span></span>] ;<span class="pl-c"><span class="pl-c">//</span>含三项值的数组</span>
+	colors[<span class="pl-smi">colors</span>.<span class="pl-c1">length</span>] <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>black<span class="pl-pds">&quot;</span></span> ;  <span class="pl-c"><span class="pl-c">//</span>长度是数值是新增项的下标</span>
+	colors[<span class="pl-smi">colors</span>.<span class="pl-c1">length</span>] <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">&quot;</span>brown<span class="pl-pds">&quot;</span></span> ;  
+	<span class="pl-k">for</span>(<span class="pl-k">var</span> i<span class="pl-k">=</span><span class="pl-c1">0</span>; i<span class="pl-k">&lt;</span><span class="pl-smi">colors</span>.<span class="pl-c1">length</span>; i<span class="pl-k">++</span>){
+		<span class="pl-c1">document</span>.<span class="pl-c1">write</span>(colors[i]<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">&quot;</span>&lt;br /&gt;<span class="pl-pds">&quot;</span></span>) ;
+		<span class="pl-c">/*</span>
+<span class="pl-c">		输出结果：</span>
+<span class="pl-c">			red</span>
+<span class="pl-c">			blue</span>
+<span class="pl-c">			green</span>
+<span class="pl-c">			black</span>
+<span class="pl-c">			brown</span>
+<span class="pl-c">		 */</span>
+	}
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<hr /> 
+<p>下面细说数组的各种功能</p> 
+<h3> <a id="检测数组" class="anchor" href="#%E6%A3%80%E6%B5%8B%E6%95%B0%E7%BB%84" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>检测数组</h3> 
+<p>在变量的检测一节，我们说过检测基本类型的数据用<code>typeof</code>关键字，而检测引用类型的数据则用<code>instanceof</code>关键字，在这里我们将介绍多一种方法。</p> 
+<ul> 
+ <li>老方法，如果判断正确就返回true</li> 
+</ul> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> colors <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">&quot;</span>red<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>green<span class="pl-pds">&quot;</span></span>] ;
+	<span class="pl-en">alert</span>(colors <span class="pl-k">instanceof</span> <span class="pl-c1">Array</span>);  <span class="pl-c"><span class="pl-c">//</span>true</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<p>但是这种老方法有一个问题，这种老方法是假定只有一个全局执行环境的，那如果网页中包含多个框架就不止一个全局执行环境了，从一个框架向另一个框架传递一个数组的话，那各自就有不同的构造函数。为了解决这个问题</p> 
+<ul> 
+ <li>新方法，有些浏览器没实现这个方法，后面会学到人工实现这个方法。</li> 
+</ul> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> colors <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">&quot;</span>red<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>green<span class="pl-pds">&quot;</span></span>] ;
+	<span class="pl-k">if</span>(<span class="pl-c1">Array</span>.<span class="pl-en">isArray</span>(colors)){
+		<span class="pl-en">alert</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>colors是数组<span class="pl-pds">&quot;</span></span>);
+	}
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<h3> <a id="转换方法" class="anchor" href="#%E8%BD%AC%E6%8D%A2%E6%96%B9%E6%B3%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>转换方法</h3> 
+<p>所有对象都有<code>toLocaleString()</code>，<code>toString()</code>，<code>valueOf()</code>方法，之前没提到过，那就让我们先到W3school去查找学习一下吧。</p> 
+<ul> 
+ <li>arrayObject.toLocaleString()<br /> 说明：</li> 
+</ul> 
+<blockquote> 
+ <p>首先调用每个数组元素的 toLocaleString() 方法，然后使用地区特定的分隔符把生成的字符串连接起来，形成一个字符串。</p> 
+</blockquote> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> colors <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">&quot;</span>red<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>green<span class="pl-pds">&quot;</span></span>] ;
+	<span class="pl-c1">document</span>.<span class="pl-c1">write</span>(<span class="pl-smi">colors</span>.<span class="pl-c1">toLocaleString</span>());<span class="pl-c"><span class="pl-c">//</span>red,blue,green</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<ul> 
+ <li>toString()<br /> 说明:</li> 
+</ul> 
+<blockquote> 
+ <p>当数组用于字符串环境时，JavaScript 会调用这一方法将数组自动转换成字符串。但是在某些情况下，需要显式地调用该方法。</p> 
+</blockquote> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> colors <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">&quot;</span>red<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>green<span class="pl-pds">&quot;</span></span>] ;
+	<span class="pl-c1">document</span>.<span class="pl-c1">write</span>(<span class="pl-smi">colors</span>.<span class="pl-c1">toString</span>());<span class="pl-c"><span class="pl-c">//</span>red,blue,green</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<ul> 
+ <li>valueOf()<br /> 定义和用法</li> 
+</ul> 
+<blockquote> 
+ <p>valueOf() 方法返回 Array 对象的原始值。 该原始值由 Array 对象派生的所有对象继承。 valueOf() 方法通常由 JavaScript 在后台自动调用，并不显式地出现在代码中</p> 
+</blockquote> 
+<p>这里说一下<code>toLacaleString()</code>方法与<code>toString()</code>方法的区别,在字符串的环境下，数组会自动调用<code>toString()</code>方法将元素转换成字符串，而如果手动地调用<code>toLacaleString()</code>方法，数组就自动地去调用每个元素的<code>toLacaleString()</code>方法。<br /> 还有一个方法<code>join()</code>也能将数组转换成字符串，不同处在于这个方法可以接收一个符号，用来分割各个元素。如果不传递参数则默认使用逗号，如：</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> colors <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">&quot;</span>red<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>green<span class="pl-pds">&quot;</span></span>] ;
+	<span class="pl-c1">document</span>.<span class="pl-c1">write</span>(<span class="pl-smi">colors</span>.<span class="pl-c1">join</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>||<span class="pl-pds">&quot;</span></span>)<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">&quot;</span>&lt;br /&gt;<span class="pl-pds">&quot;</span></span>);<span class="pl-c"><span class="pl-c">//</span>red||blue||green</span>
+	<span class="pl-c1">document</span>.<span class="pl-c1">write</span>(<span class="pl-smi">colors</span>.<span class="pl-c1">join</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>XXXX<span class="pl-pds">&quot;</span></span>)<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">&quot;</span>&lt;br /&gt;<span class="pl-pds">&quot;</span></span>);<span class="pl-c"><span class="pl-c">//</span>redXXXXblueXXXXgreen</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<h3> <a id="栈方法" class="anchor" href="#%E6%A0%88%E6%96%B9%E6%B3%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>栈方法</h3> 
+<p><strong>栈</strong>是一种LIFO（Last-In-First-Out后进先出）的数据结构，也就是新添加的最早被移除。而栈中的推入和弹出只发生在一个位置——栈的顶部。ECAMScript为数组提供了<code>push()</code>方法和<code>pop()</code>方法，以实现类似的行为。</p> 
+<ul> 
+ <li> <code>push()</code>接收任意数量的参数，把它们逐个添加到数组的尾部，返回修改后数组的<code>length</code>值。</li> 
+</ul> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> colors <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">&quot;</span>red<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>green<span class="pl-pds">&quot;</span></span>] ;
+	<span class="pl-k">var</span> count <span class="pl-k">=</span> <span class="pl-smi">colors</span>.<span class="pl-c1">push</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>black<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>yellow<span class="pl-pds">&quot;</span></span>);<span class="pl-c"><span class="pl-c">//</span>增加2项</span>
+	<span class="pl-en">alert</span>(count);  <span class="pl-c"><span class="pl-c">//</span>5  返回新数组的长度</span>
+	count <span class="pl-k">=</span> <span class="pl-smi">colors</span>.<span class="pl-c1">push</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>purple<span class="pl-pds">&quot;</span></span>);<span class="pl-c"><span class="pl-c">//</span>再增加一项</span>
+	<span class="pl-en">alert</span>(count);<span class="pl-c"><span class="pl-c">//</span>6  返回新数组的长度</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<ul> 
+ <li> <code>pop()</code>方法移除数组最后一项，相当于令<code>length</code>减<code>1</code>，然后返回被移除的项。</li> 
+</ul> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> colors <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">&quot;</span>red<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>green<span class="pl-pds">&quot;</span></span>] ;
+	<span class="pl-k">var</span> item <span class="pl-k">=</span> <span class="pl-smi">colors</span>.<span class="pl-c1">pop</span>();<span class="pl-c"><span class="pl-c">//</span>移除最后一项</span>
+	<span class="pl-en">alert</span>(item);   <span class="pl-c"><span class="pl-c">//</span>green</span>
+	<span class="pl-k">for</span>(<span class="pl-k">var</span> i<span class="pl-k">=</span><span class="pl-c1">0</span>; i<span class="pl-k">&lt;</span><span class="pl-smi">colors</span>.<span class="pl-c1">length</span>; i<span class="pl-k">++</span>){
+		<span class="pl-c1">document</span>.<span class="pl-c1">write</span>(colors[i]<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">&quot;</span>&lt;br /&gt;<span class="pl-pds">&quot;</span></span>);<span class="pl-c"><span class="pl-c">//</span>red   blue</span>
+	}
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<p>这两个方法是数组默认的方法，随便用，也可以跟数组的其他方法混着用。</p> 
+<h3> <a id="队列方法" class="anchor" href="#%E9%98%9F%E5%88%97%E6%96%B9%E6%B3%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>队列方法</h3> 
+<p>队列方法与栈方法不同，队列数据结构访问的规则是FIFO（First-In-First-Out,先进先出），在队列列表的末端添加项，从列表的前端移除项。用<code>push()</code>方法可以在队列的末端添加项了，我们还需要一个方法可以从列表的前端移除项。<code>shift()</code>方法能够移除数组中的第一项并返回该项，同时将<code>length</code>的值减<code>1</code>。</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> colors <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Array</span>() ;
+	<span class="pl-k">var</span> count <span class="pl-k">=</span> <span class="pl-smi">colors</span>.<span class="pl-c1">push</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>red<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>green<span class="pl-pds">&quot;</span></span>);<span class="pl-c"><span class="pl-c">//</span>推入两项</span>
+	<span class="pl-en">alert</span>(count); <span class="pl-c"><span class="pl-c">//</span>2  </span>
+	<span class="pl-k">var</span> item <span class="pl-k">=</span> <span class="pl-smi">colors</span>.<span class="pl-c1">shift</span>();<span class="pl-c"><span class="pl-c">//</span>删除第一项</span>
+	<span class="pl-en">alert</span>(item);<span class="pl-c"><span class="pl-c">//</span>red  输出删除的项</span>
+	<span class="pl-k">for</span>(<span class="pl-k">var</span> i<span class="pl-k">=</span><span class="pl-c1">0</span>; i<span class="pl-k">&lt;</span><span class="pl-smi">colors</span>.<span class="pl-c1">length</span>; i<span class="pl-k">++</span>){
+		<span class="pl-c1">document</span>.<span class="pl-c1">write</span>(colors[i]);<span class="pl-c"><span class="pl-c">//</span>green 还剩下一项了</span>
+	}
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<p>还有一个特别的方法——<code>unshift()</code>，与<code>shift()</code>方法相反，<code>unshift()</code>方法能在数组队列的前端添加任意个项，并返回新数组的长度。因此，将<code>pop()</code>方法与<code>unshift()</code>方法结合，可以从相反方向来模拟队列，即在队列前端推入，从队列的尾部移除。</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> colors <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Array</span>() ;
+	<span class="pl-k">var</span> count <span class="pl-k">=</span> <span class="pl-smi">colors</span>.<span class="pl-c1">unshift</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>red<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>yellow<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>purple<span class="pl-pds">&quot;</span></span>);<span class="pl-c"><span class="pl-c">//</span>推入顺序red,yellow,purple</span>
+	<span class="pl-en">alert</span>(count);<span class="pl-c"><span class="pl-c">//</span>3</span>
+	count <span class="pl-k">=</span> <span class="pl-smi">colors</span>.<span class="pl-c1">unshift</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>blue<span class="pl-pds">&quot;</span></span>);
+	<span class="pl-k">var</span> item <span class="pl-k">=</span> <span class="pl-smi">colors</span>.<span class="pl-c1">pop</span>();
+	<span class="pl-en">alert</span>(item);<span class="pl-c"><span class="pl-c">//</span>purple</span>
+	<span class="pl-k">for</span>(<span class="pl-k">var</span> i<span class="pl-k">=</span><span class="pl-c1">0</span>; i<span class="pl-k">&lt;</span><span class="pl-smi">colors</span>.<span class="pl-c1">length</span>; i<span class="pl-k">++</span>){
+		<span class="pl-c1">document</span>.<span class="pl-c1">write</span>(colors[i]<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">&quot;</span>&lt;br /&gt;<span class="pl-pds">&quot;</span></span>);
+		<span class="pl-c">/*已经删除最后一项了</span>
+<span class="pl-c">			blue</span>
+<span class="pl-c">			red</span>
+<span class="pl-c">			yellow</span>
+<span class="pl-c">		 */</span>
+	}
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<h3> <a id="重排序方法" class="anchor" href="#%E9%87%8D%E6%8E%92%E5%BA%8F%E6%96%B9%E6%B3%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>重排序方法</h3> 
+<p>说到重排序方法可能你会想到reverse()和sort()。</p> 
+<ul> 
+ <li> <code>arrayObject.reverse()</code>方法用于颠倒数组中元素的顺序。该方法会改变原来的数组，而不会创建新的数组，<strong>返回</strong>新数组。</li> 
+</ul> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> num <span class="pl-k">=</span> [<span class="pl-c1">0</span>, <span class="pl-c1">1</span>, <span class="pl-c1">2</span>, <span class="pl-c1">3</span>, <span class="pl-c1">4</span>, <span class="pl-c1">5</span>, <span class="pl-c1">6</span>, <span class="pl-c1">7</span>, <span class="pl-c1">8</span>, <span class="pl-c1">9</span>] ;
+	<span class="pl-c1">document</span>.<span class="pl-c1">write</span>(<span class="pl-smi">num</span>.<span class="pl-c1">join</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>、<span class="pl-pds">&quot;</span></span>)<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">&quot;</span>&lt;br /&gt;<span class="pl-pds">&quot;</span></span>);
+	<span class="pl-c"><span class="pl-c">//</span>0、1、2、3、4、5、6、7、8、9</span>
+	<span class="pl-c1">document</span>.<span class="pl-c1">write</span>((<span class="pl-smi">num</span>.<span class="pl-c1">reverse</span>()).<span class="pl-c1">join</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>。<span class="pl-pds">&quot;</span></span>));
+	<span class="pl-c"><span class="pl-c">//</span>9。8。7。6。5。4。3。2。1。0</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<ul> 
+ <li> <code>arrayObject.sort(sortby)</code>方法用于对数组的元素进行排序。在原数组上排序，<strong>返回</strong>新数组。如果没有参数则按按照字符编码的顺序进行排序，参数必须是函数。</li> 
+</ul> 
+<blockquote> 
+ <p>如果想按照其他标准进行排序，就需要提供比较函数，该函数要比较两个值，然后返回一个用于说明这两个值的相对顺序的数字。比较函数应该具有两个参数 a 和 b，其返回值如下：<br /> 若 a 小于 b，在排序后的数组中 a 应该出现在 b 之前，则返回一个小于 0 的值。<br /> 若 a 等于 b，则返回 0。<br /> 若 a 大于 b，则返回一个大于 0 的值。</p> 
+</blockquote> 
+<p><strong>函数中，如果第一个参数应该排在前面就返回负数，如果两个参数等级就返回<code>0</code>，如果第一个参数应该排在后面就返回正数。</strong><br /> 例子一，按照字符排序：</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> person <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">&quot;</span>Tony<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>Nicholas<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>Allen<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>Jene<span class="pl-pds">&quot;</span></span>] ;
+	<span class="pl-en">alert</span>(<span class="pl-smi">person</span>.<span class="pl-c1">join</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>、<span class="pl-pds">&quot;</span></span>));
+	<span class="pl-c"><span class="pl-c">//</span>Tony、Nicholas、Allen、Jene  </span>
+	<span class="pl-en">alert</span>((<span class="pl-smi">person</span>.<span class="pl-c1">sort</span>()).<span class="pl-c1">join</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>、<span class="pl-pds">&quot;</span></span>));
+	<span class="pl-c"><span class="pl-c">//</span>Allen、Jene、Nicholas、Tony</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<p>例子二，按照数字顺序：</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> person <span class="pl-k">=</span> [<span class="pl-c1">1</span>, <span class="pl-c1">4</span>, <span class="pl-c1">5</span>, <span class="pl-c1">32</span>, <span class="pl-c1">2</span>, <span class="pl-c1">6</span>, <span class="pl-c1">8</span>, <span class="pl-c1">6</span>] ;
+	<span class="pl-en">alert</span>(<span class="pl-smi">person</span>.<span class="pl-c1">join</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>、<span class="pl-pds">&quot;</span></span>));
+	<span class="pl-c"><span class="pl-c">//</span>1、4、5、3、2、6、8、6 </span>
+	<span class="pl-en">alert</span>((<span class="pl-smi">person</span>.<span class="pl-c1">sort</span>()).<span class="pl-c1">join</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>、<span class="pl-pds">&quot;</span></span>));
+	<span class="pl-c"><span class="pl-c">//</span>1、2、32、4、5、6、6、8</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<p><code>32</code>并没有排在最后，因为<code>32</code>中的<code>3</code>应该是排在较前的。<br /> 例子三，函数作为参数，按照大小排序。</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">function</span> <span class="pl-en">sortNumber</span>(<span class="pl-smi">a</span>,<span class="pl-smi">b</span>){<span class="pl-c"><span class="pl-c">//</span>将函数名作为参数传递给sort()即可</span>
+		<span class="pl-k">if</span>(a<span class="pl-k">&lt;</span>b){
+			<span class="pl-k">return</span> <span class="pl-k">-</span><span class="pl-c1">1</span> ;
+		}<span class="pl-k">else</span> <span class="pl-k">if</span>(a<span class="pl-k">&gt;</span>b){
+			<span class="pl-k">return</span> <span class="pl-c1">1</span> ;
+		}<span class="pl-k">else</span>{
+			<span class="pl-k">return</span> <span class="pl-c1">0</span> ;
+		}
+	}
+
+	<span class="pl-k">var</span> person <span class="pl-k">=</span> [<span class="pl-c1">1</span>, <span class="pl-c1">4</span>, <span class="pl-c1">5</span>, <span class="pl-c1">32</span>, <span class="pl-c1">2</span>, <span class="pl-c1">6</span>, <span class="pl-c1">8</span>, <span class="pl-c1">6</span>] ;
+	<span class="pl-en">alert</span>(<span class="pl-smi">person</span>.<span class="pl-c1">join</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>、<span class="pl-pds">&quot;</span></span>));
+	<span class="pl-c"><span class="pl-c">//</span>1、4、5、3、2、6、8、6 </span>
+	<span class="pl-en">alert</span>((<span class="pl-smi">person</span>.<span class="pl-c1">sort</span>(sortNumber)).<span class="pl-c1">join</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>、<span class="pl-pds">&quot;</span></span>));
+	<span class="pl-c"><span class="pl-c">//</span>1、2、4、5、6、6、8、32</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> 
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>body<span class="pl-k">&gt;</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>html<span class="pl-k">&gt;</span></pre>
+</div> 
+<p>此时应该回头看前面引用的那段话。得到的值小于<code>0</code>，<code>a</code>就排在前面。</p> 
+<h3> <a id="操作方法" class="anchor" href="#%E6%93%8D%E4%BD%9C%E6%96%B9%E6%B3%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>操作方法</h3> 
+<ul> 
+ <li> <code>arrayObject.concat(arrayX,arrayX,......,arrayX)</code>这个方法可以将多个数组的元素连接起来，原数组不改变，返回新的数组。如果没有参数，则仅仅是复制调用数组的副本。例如：</li> 
+</ul> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> number1 <span class="pl-k">=</span> [<span class="pl-c1">1</span>, <span class="pl-c1">4</span>, <span class="pl-c1">5</span>, <span class="pl-c1">32</span>, <span class="pl-c1">2</span>, <span class="pl-c1">6</span>, <span class="pl-c1">8</span>, <span class="pl-c1">6</span>] ;
+	<span class="pl-k">var</span> person <span class="pl-k">=</span> [<span class="pl-s"><span class="pl-pds">&quot;</span>Nicholas<span class="pl-pds">&quot;</span></span>, <span class="pl-s"><span class="pl-pds">&quot;</span>Tony<span class="pl-pds">&quot;</span></span>]
+	<span class="pl-k">var</span> number2 <span class="pl-k">=</span> <span class="pl-smi">number1</span>.<span class="pl-c1">concat</span>(person) ;
+	<span class="pl-c"><span class="pl-c">//</span>1,4,5,32,2,6,8,6,Nicholas,Tony</span>
+	<span class="pl-en">alert</span>(number2);
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<ul> 
+ <li> <code>arrayObject.slice(start,end)</code>从数组中截取部分元素，返回一个子数组，原数组不改变。<code>start</code>:是截取部分的始点(不包含该项)，如果是负数则从后面数起。<code>end</code>:是截取部分的终点，如果是负数同理，如果没有则截取到数组结束。</li> 
+</ul> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> number <span class="pl-k">=</span> [<span class="pl-c1">1</span>, <span class="pl-c1">4</span>, <span class="pl-c1">5</span>, <span class="pl-c1">32</span>, <span class="pl-c1">2</span>, <span class="pl-c1">6</span>, <span class="pl-c1">8</span>, <span class="pl-c1">6</span>] ;
+	<span class="pl-c1">document</span>.<span class="pl-c1">write</span>(<span class="pl-smi">number</span>.<span class="pl-c1">slice</span>(<span class="pl-c1">2</span>,<span class="pl-c1">5</span>));<span class="pl-c"><span class="pl-c">//</span>5, 32, 2</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<p>如果想改变原数组用<code>splice()</code>方法。</p> 
+<ul> 
+ <li> <code>arrayObject.splice(index,howmany,item1,.....,itemX)</code>方法可以删除项、插入项、替换项。改变原来的数组，返回被删除的元素组成的数组。有三个参数。分别是起始项，删除元素数量，插入的元素。</li> 
+</ul> 
+<h3> <a id="位置方法" class="anchor" href="#%E4%BD%8D%E7%BD%AE%E6%96%B9%E6%B3%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>位置方法</h3> 
+<p>ECMAScript5为数组实例添加了两个位置方法：<code>indexOf()</code>、<code>lastIndexOf()</code>。这两个方法都有两个参数：要查找的项和（可选）查找起点位置的索引。其中<code>indexOf()</code>从数组的0位置开始向后查找，<code>lastIndexOf()</code>则从数组的末尾开始向前查找。两种方法都返回要查找的项在数组中的位置，如果没找到就返回<code>-1</code>。在比较查找的是否符合时，用的是全等操作符，也就是说必须严格相等。</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> number <span class="pl-k">=</span> [<span class="pl-c1">1</span>, <span class="pl-c1">5</span>, <span class="pl-c1">4</span>, <span class="pl-c1">32</span>, <span class="pl-c1">2</span>, <span class="pl-c1">6</span>, <span class="pl-c1">4</span>, <span class="pl-c1">6</span>] ;
+	<span class="pl-en">alert</span>(<span class="pl-smi">number</span>.<span class="pl-c1">indexOf</span>(<span class="pl-c1">4</span>,<span class="pl-c1">1</span>));<span class="pl-c"><span class="pl-c">//</span>2</span>
+	<span class="pl-en">alert</span>(<span class="pl-smi">number</span>.<span class="pl-c1">lastIndexOf</span>(<span class="pl-c1">4</span>,));<span class="pl-c"><span class="pl-c">//</span>6</span>
+	<span class="pl-en">alert</span>(<span class="pl-smi">number</span>.<span class="pl-c1">indexOf</span>(<span class="pl-c1">7</span>,<span class="pl-c1">0</span>));<span class="pl-c"><span class="pl-c">//</span>-1</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<h3> <a id="迭代方法" class="anchor" href="#%E8%BF%AD%E4%BB%A3%E6%96%B9%E6%B3%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>迭代方法</h3> 
+<p>//不学这个</p> 
+<h3> <a id="归并方法" class="anchor" href="#%E5%BD%92%E5%B9%B6%E6%96%B9%E6%B3%95" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>归并方法</h3> 
+<p>//不学这个</p> 
 <h2> <a id="date类型" class="anchor" href="#date%E7%B1%BB%E5%9E%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Date类型</h2> 
+<p>创建日期对象使用<code>new</code>关键字和<code>Date</code>构造函数即可：</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> now <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Date</span>() ;
+	<span class="pl-en">alert</span>(now);  <span class="pl-c"><span class="pl-c">//</span>Mon Jun 19 2017 12:12:17 GMT+0800 (中国标准时间)</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span> </pre>
+</div> 
+<p>如果不传递参数，则自动获得当前日期，如果想根据特定的日期和时间创建对象，必须传入表示该日期的毫秒数。为简化这过程，ECMAScript提供两个方法：<code>Date.parse()</code>、<code>Date.UTC()</code><br /> 例如，要为2004年5月25日创建一个日期对象：</p> 
+<div class="highlight highlight-source-js">
+ <pre><span class="pl-k">&lt;</span>script type<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">&quot;</span>text/javascript<span class="pl-pds">&quot;</span></span><span class="pl-k">&gt;</span>
+	<span class="pl-k">var</span> now <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">Date</span>(<span class="pl-c1">Date</span>.<span class="pl-c1">parse</span>(<span class="pl-s"><span class="pl-pds">&quot;</span>May 25, 2004<span class="pl-pds">&quot;</span></span>)) ;
+	<span class="pl-en">alert</span>(now);  <span class="pl-c"><span class="pl-c">//</span>Tue May 25 2004 00:00:00 GMT+0800 (中国标准时间)</span>
+<span class="pl-k">&lt;</span><span class="pl-k">/</span>script<span class="pl-k">&gt;</span></pre>
+</div> 
+<p>如果传入<code>Date.parse()</code>方法的参数不能表示日期，那么返回值是<code>NaN</code>，实际上，如果直接把表示日期的字符串传入给我<code>Date()</code>构造方法，在后台也会自动调用<code>Date.parse()</code>方法。</p> 
 <h2> <a id="regexp类型" class="anchor" href="#regexp%E7%B1%BB%E5%9E%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>RegExp类型</h2> 
 <h2> <a id="function类型" class="anchor" href="#function%E7%B1%BB%E5%9E%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Function类型</h2> 
 <h2> <a id="基本包装类型" class="anchor" href="#%E5%9F%BA%E6%9C%AC%E5%8C%85%E8%A3%85%E7%B1%BB%E5%9E%8B" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>基本包装类型</h2> 
