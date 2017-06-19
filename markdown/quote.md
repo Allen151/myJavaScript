@@ -420,8 +420,24 @@ ECMAScript5为数组实例添加了两个位置方法：`indexOf()`、`lastIndex
 ### 归并方法   
 //不学这个
 
-
 ## Date类型  
+创建日期对象使用`new`关键字和`Date`构造函数即可：  
+```javascript
+<script type="text/javascript">
+	var now = new Date() ;
+	alert(now);  //Mon Jun 19 2017 12:12:17 GMT+0800 (中国标准时间)
+</script> 
+```
+如果不传递参数，则自动获得当前日期，如果想根据特定的日期和时间创建对象，必须传入表示该日期的毫秒数。为简化这过程，ECMAScript提供两个方法：`Date.parse()`、`Date.UTC()`  
+例如，要为2004年5月25日创建一个日期对象：  
+```javascript
+<script type="text/javascript">
+	var now = new Date(Date.parse("May 25, 2004")) ;
+	alert(now);  //Tue May 25 2004 00:00:00 GMT+0800 (中国标准时间)
+</script>
+```
+如果传入`Date.parse()`方法的参数不能表示日期，那么返回值是`NaN`，实际上，如果直接把表示日期的字符串传入给我`Date()`构造方法，在后台也会自动调用`Date.parse()`方法。
+
 ## RegExp类型 
 ## Function类型
 ## 基本包装类型 
