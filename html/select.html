@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>下拉列表框</title>
+</head>
+<body>
+	<form method="post">
+	选择你的城市：
+		<select id="city">
+			<option value="BJ-北京">北京</option>
+			<option value="NJ-南京">南京</option>
+			<option value="TJ-天津">天津</option>
+			<option value="MM-茂名">茂名</option>
+			<option value="GZ-广州">广州</option>
+			<option value="ZZ-湛江">湛江</option>
+		</select>
+	</form>
+
+<script type="text/javascript">
+	window.onload = function(){
+		var myCity = document.getElementById("city");
+		myCity.addEventListener("change",function(){
+			alert("你的城市："+this.value);
+		},false);	
+	}
+</script>
+</body>
+</html>
