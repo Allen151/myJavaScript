@@ -5,8 +5,14 @@
 </head>
 <body>
 	<p id="someWord">这是一个段落</p>
-	<button id=showTime"" onclick="changeContent()">显示时间</button>
+	<button id=showTime"">显示时间</button>
 <script type="text/javascript">
+	window.onload = function(){
+		var showTimeButton = document.getElementById("showTime");
+		showTimeButton.addEventListener("click", function(){
+			changeContent();
+		}, false);
+	}
 	var changeContent = function(){
 		var now = new Date(Date.parse("May 25, 2004")) ;
 		var someWord = document.getElementById("someWord");
