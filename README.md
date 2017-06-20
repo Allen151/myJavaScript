@@ -51,6 +51,7 @@
 - [图片轮换] ~~[示例2]~~
 - [表单验证] ~~[示例3]~~
 - [下拉框事件] ~~[示例4]~~
+- [表格添加鼠标事件] ~~[示例5]~~
 ### 实战  
 
 ### 我的一些学习计划  
@@ -83,7 +84,7 @@
 [图片轮换]: markdown/changepic.md
 [表单验证]: markdown/regcheck.md
 [下拉框事件]: markdown/select.md
-
+[表格添加鼠标事件]: markdown/tablemouse.md
 
 
 
@@ -93,6 +94,9 @@
 [示例2]: https://allen151.github.io/myJavaScript/changepic.html
 [示例3]: https://allen151.github.io/myJavaScript/html/regcheck.html
 [示例4]: https://allen151.github.io/myJavaScript/html/select.html
+[示例5]: https://allen151.github.io/myJavaScript/html/imooc-1.html
+
+
 [在GitHub上使用Hexo搭建博客]: markdown/blog.md
 
 [前端面试题1]: http://www.runoob.com/w3cnote/front-end-developer-questions-and-answers.html
