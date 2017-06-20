@@ -1,0 +1,32 @@
+body{
+	background-color: #ddd;
+}
+ul{
+	list-style-type: none;
+}
+
+
+#parent{
+	width: 600px;
+	height: 600px;
+	background-color: #fff;
+	margin: 10px auto;
+}
+#head{
+
+}
+#head li{
+	color: #555;
+	display: inline;
+	margin: 30px 40px 0 40px; 
+	border: 1px solid #B5B9B9;
+}
+#head li:hover{
+	border-top: 3px solid #945022;
+	color:red;
+} 
+
+
+div div{
+	border: 2px solid #326599;
+}
