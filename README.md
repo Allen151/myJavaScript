@@ -48,11 +48,18 @@
 - [引用对象]
 
 ### 高级
+
+
+
+
+### 实战  
 - [图片轮换] ~~[示例2]~~
 - [表单验证] ~~[示例3]~~
 - [下拉框事件] ~~[示例4]~~
 - [表格添加鼠标事件] ~~[示例5]~~
-### 实战  
+- [下拉框选项卡]  ~~[示例6]~~
+
+
 
 ### 我的一些学习计划  
 #### [在GitHub上使用Hexo搭建博客]
@@ -85,7 +92,7 @@
 [表单验证]: markdown/regcheck.md
 [下拉框事件]: markdown/select.md
 [表格添加鼠标事件]: markdown/tablemouse.md
-
+[下拉框选项卡]: markdown/tab_contrl.md
 
 
 
@@ -95,7 +102,7 @@
 [示例3]: https://allen151.github.io/myJavaScript/html/regcheck.html
 [示例4]: https://allen151.github.io/myJavaScript/html/select.html
 [示例5]: https://allen151.github.io/myJavaScript/html/imooc-1.html
-
+[示例6]: https://allen151.github.io/myJavaScript/html/imooc-2.html 
 
 [在GitHub上使用Hexo搭建博客]: markdown/blog.md
 
